@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FilmZone")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+569049a8afaeec2af09351c36955274bf58377e0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e80a162875b63793c21cc176e8d1ae8da28f87b2")]
 [assembly: System.Reflection.AssemblyProductAttribute("FilmZone")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FilmZone")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

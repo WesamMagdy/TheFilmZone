@@ -7,14 +7,15 @@
         {
             CategoryService = categoryService;
         }
-        public async Task<IEnumerable<CategoryIndexViewModel>> GetCategoryIndexView()
+       
+        public async Task<IEnumerable<CategoryViewModel>> GetCategoryIndexView()
         {
             var categories = await CategoryService.GetAllCategoriesAsync();
-            List<CategoryIndexViewModel> categoryIndexViewModels = new List<CategoryIndexViewModel>();
+            List<CategoryViewModel> categoryIndexViewModels = new List<CategoryViewModel>();
             foreach (var category in categories) 
             {
 
-                categoryIndexViewModels.Add(new CategoryIndexViewModel
+                categoryIndexViewModels.Add(new CategoryViewModel
                 {
                     CategoryId = category.Id,
                     CategoryName = category.Name,
@@ -24,6 +25,26 @@
             return categoryIndexViewModels;
 
         }
-
+        public  CategoryViewModel CreateCategory()
+        {
+            return new CategoryViewModel();
+        }
+        public async Task AddCategory(CategoryViewModel vm)
+        {
+            var category = new Category
+            {
+                Name = vm.CategoryName
+            };
+           await CategoryService.SaveCategory(category);
+        }
+        public async Task<CategoryViewModel> ToEdit(int id)
+        {
+            var category = await CategoryService.GetById(id);
+            return new CategoryViewModel
+            {
+                CategoryId = category.Id,
+                CategoryName = category.Name
+            };
+        }
     }
 }

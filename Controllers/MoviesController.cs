@@ -22,7 +22,7 @@ namespace FilmZone.Controllers
             return View(DetailsVM);
         }
         [HttpGet]
-        public async Task<IActionResult> Create(int id)
+        public async Task<IActionResult> Create()
         {
             var VM = await MovieProvider.GetCreateMovieVM();
             return View(VM);

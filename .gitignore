@@ -1,8 +1,39 @@
-# Build output
+# Build results
 bin/
 obj/
+out/
 
-# Visual Studio settings and temp files
-.vs/
+# User-specific files
 *.user
 *.suo
+
+# VS and Rider project settings
+.vs/
+.idea/
+
+# ASP.NET temporary files and logs
+*.db
+*.log
+
+# IIS/ASP.NET Hosting
+.vscode/
+launchSettings.json
+
+# Dependency caches (when not restoring)
+packages/
+*.nupkg
+
+# Runtime/Publish folders
+wwwroot/lib/
+node_modules/
+dist/
+
+# Environment-specific configs (optional)
+appsettings.*.json
+
+# Others
+*.tmp
+*.bak
+*.swp
+.DS_Store
+Thumbs.db

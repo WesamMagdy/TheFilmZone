@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace FilmZone.Controllers
 {
@@ -23,43 +24,39 @@ namespace FilmZone.Controllers
        // GET: CategoryController/Create
         public ActionResult Create()
         {
-            return View();
+            var categoryViewModel = categoryProvider.CreateCategory();
+            return View(categoryViewModel);
         }
 
         // POST: CategoryController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<ActionResult> Create(CategoryViewModel Vm)
         {
-            try
+            if (!ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                var ViewModel = categoryProvider.CreateCategory();
+                return View(ViewModel);
             }
-            catch
-            {
-                return View();
-            }
+            await categoryProvider.AddCategory(Vm);
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: CategoryController/Edit/5
-        public ActionResult Edit(int id)
+        [HttpGet]
+        public async Task<ActionResult> Edit(int id)
         {
-            return View();
+
+            var categoryViewModel = await categoryProvider.ToEdit(id);
+            return View(categoryViewModel);
         }
 
         // POST: CategoryController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(CategoryViewModel categoryViewModel)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            return View();
         }
 
         // GET: CategoryController/Delete/5

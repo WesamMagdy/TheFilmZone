@@ -24,14 +24,13 @@ namespace FilmZone.Controllers
                 MovieIndexVm = await MovieProvider.GetMovieByName(searchValue);
 
             }
-            if (id != 0)
+            else if (id != 0)
             {
                 MovieIndexVm = await MovieProvider.GetMoviesByCategory(id);
             }
             else
             {
                 MovieIndexVm = await MovieProvider.GetMovieIndexVM();
-                return View(MovieIndexVm);
             }
             return View(MovieIndexVm);
         }
