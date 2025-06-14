@@ -1,0 +1,36 @@
+﻿@model IEnumerable<FilmZone.ViewModels.CategoryIndexViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row mt-5">
+    @foreach (var category in Model)
+    {
+        <div class="col-md-6">
+            <a asp-action="index"
+            asp-controller="Home"
+               asp-route-id="@category.CategoryId"
+               class="btn btn-outline-dark w-100 mt-3 fs-5 neon-hover">
+                @category.CategoryName
+                <br />
+                <span class="font-monospace small">Movies: @category.MoviesCount</span>
+            </a>
+        </div>
+    }
+</div>
+<div>
+    <a asp-action="Manage" type="button" class="btn btn-outline-warning mt-4">Edit Categories</a>
+
+</div>
+<style>
+    .neon-hover {
+        transition: box-shadow 0.3s, color 0.3s, border-color 0.3s;
+    }
+
+    .neon-hover:hover {
+        color: #3399ff; /* light blue for better visibility on hover */
+        border-color: #0033cc; /* dark blue border */
+        box-shadow: 0 0 8px #0033cc, 0 0 16px #3399ff, 0 0 24px #0033cc;
+    }
+</style>

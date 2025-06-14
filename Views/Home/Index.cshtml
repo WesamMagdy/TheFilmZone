@@ -1,0 +1,95 @@
+﻿@model IEnumerable<FilmZone.ViewModels.MovieIndexVM>
+
+@{
+	ViewData["Title"] = "Index";
+}
+
+<div class="row mt-5">
+	@foreach (var movie in Model)
+	{
+		<div class="col-lg-4 col-md-6">
+			<a class="card text-white rounded-3 overflow-hidden bg-dark mb-3 rounded-1 text-decoration-none"
+			   data-category="@movie.Category"
+			   asp-action="Details"
+			   asp-controller="Movies"
+			   asp-route-id="@movie.Id"
+			   style="max-width: 22rem;">
+				<div class="card-body m-2 rounded-2" style="background-image: url('@Url.Content($"~/assets/images/Movies/{movie.Cover}")'); background-size:cover ; background-position:center; height:500px">
+					<div class="d-flex align-items-xl-end h-100 ">
+						<span class="badge rounded-pill bg-light fs-6">@movie.Category</span>
+					</div>
+				</div>
+				<div class="card-footer py-0 px-2 ">
+					<h5>@movie.Title</h5>
+					<div style="display: flex; flex-wrap: wrap; gap: 8px; padding-top: 2px;">
+						@foreach (var StreamLogo in movie.StreamingLogos)
+						{
+							<img src="@Url.Content($"~/assets/images/Logos/{StreamLogo}.png")"
+								 alt="@StreamLogo"
+								 class="stream-logo me-2 fs-4 mb-2" />
+						}
+					</div>
+				</div>
+			</a>
+		</div>
+	}
+</div>
+</p>
+<style>
+	.stream-logo {
+		width: 32px;
+		height: 32px;
+		border-radius: 6px;
+		/*box-shadow: 0 0 6px rgba(200, 200, 200, 0.6); /* Neon glow */
+		transition: transform 0.2s ease, box-shadow 0.2s ease;
+	}
+
+		.stream-logo:hover {
+			transform: scale(1);
+			box-shadow: 0 0 12px rgba(0, 255, 255, 0.9);
+		}
+</style>
+<style>
+	.card {
+		transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+		box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+		border: 1px solid rgba(255, 255, 255, 0.05);
+	}
+
+		.card:hover {
+			transform: scale(1.03);
+			box-shadow: 0 0 16px rgba(0, 180, 255, 0.5), 0 0 32px rgba(0, 120, 255, 0.3);
+			border-color: rgba(0, 120, 255, 0.5);
+			z-index: 5;
+		}
+
+		/* Category-specific glow colors on hover */
+		.card[data-category="Action"]:hover {
+			box-shadow: 0 0 16px rgba(255, 0, 0, 0.5), 0 0 32px rgba(255, 0, 0, 0.3);
+			border-color: rgba(255, 0, 0, 0.4);
+		}
+
+		.card[data-category="Drama"]:hover {
+			box-shadow: 0 0 16px rgba(155, 89, 182, 0.5), 0 0 32px rgba(142, 68, 173, 0.3);
+			border-color: rgba(142, 68, 173, 0.4);
+		}
+
+		.card[data-category="SciFi"]:hover {
+			box-shadow: 0 0 16px rgba(0, 255, 255, 0.5), 0 0 32px rgba(0, 255, 255, 0.3);
+			border-color: rgba(0, 255, 255, 0.4);
+		}
+
+	/* Logo effect */
+	.stream-logo {
+		width: 32px;
+		height: 32px;
+		border-radius: 6px;
+		transition: transform 0.2s ease, box-shadow 0.2s ease;
+	}
+
+		.stream-logo:hover {
+			transform: scale(1.1);
+			box-shadow: 0 0 12px rgba(0, 0, 0, 0.9);
+		}
+</style>
+

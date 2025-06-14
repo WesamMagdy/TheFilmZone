@@ -1,0 +1,255 @@
+﻿@model CreateMovieViewModel
+<h1 class="mt-4">
+	<i class="bi bi-plus-square-dotted mt-9" btn-lg></i>
+	Edit Movie
+</h1>
+<form asp-controller="Movies" enctype="multipart/form-data">
+	<div class="row">
+		<div class="col-md-6">
+			<div class="form-group">
+				<label asp-for="Title" class="form-label mt-4"></label>
+				<input type="text" class="form-control" asp-for="Title" placeholder="Enter Movie Title">
+				<span asp-validation-for="Title" class=text-danger></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="CategoryId" class="form-label mt-4"></label>
+				<select class="form-select" asp-for="CategoryId" asp-items="Model.Categories">
+					<option value="">Select a Category</option>
+				</select>
+				<span asp-validation-for="CategoryId" class="text-danger"></span>
+			</div>
+			<div>
+				<label asp-for="SelectedStreamingServiceId" class="form-label mt-4"></label>
+				<select multiple class="form-select" asp-for="SelectedStreamingServiceId" asp-items="Model.StreamingServices" id="streamingServices">
+					<option></option>
+				</select>
+				<span asp-validation-for="SelectedStreamingServiceId" class="text-danger"></span>
+			</div>
+
+			<div>
+				<label asp-for="Description" class="form-label mt-4"></label>
+				<textarea class="form-control" asp-for="Description" placeholder="Movie Description" rows="3"></textarea>
+				<span asp-validation-for="Description" class="text-danger"></span>
+
+			</div>
+			<div>
+				<label asp-for="Cover" class="form-label mt-4"></label>
+				<span>
+					<small id="CoverHelp" class="form-text text-muted">  jpg/jpeg/png max size 1MB</small>
+				</span>
+
+				<input class="form-control" type="file" asp-for="Cover" data-rule-extension="jpg,png,jpeg"
+					   data-msg-extension="Not Allowed Format">
+
+				<br />
+				<span asp-validation-for="Cover" class="text-danger" id="Cover"></span>
+
+			</div>
+			<button type="submit" class="btn btn-light text-primary mt-4">Add</button>
+		</div>
+		<div class="col-md-6 d-flex justify-content-center align-items-center" style="min-height: 70vh;">
+			<div id="preview-wrapper" style="background-color: black; padding: 10px; border-radius: 6px; display: none;">
+				<img id="preview" src="@Url.Content($"~/assets/images/Movies/{Model.CoverName}")" alt="Image Preview" style=" max-width: 75vw; max-height: 70vh; object-fit: contain; border-radius: 4px;" />
+			</div>
+		</div>
+
+
+
+	</div>
+
+
+</form>
+@section Scripts {
+	<partial name="_ValidationScriptsPartial"></partial>
+	<script>
+		$(document).ready(function() {
+			$('#streamingServices').select2({
+				placeholder: "Streaming Services ",
+				allowClear: true,
+				width: '100%'
+			});
+		});
+	</script>
+	<script>
+		// Add custom method for file size
+		$.validator.addMethod("maxfilesize", function (value, element, param) {
+			if (element.files.length === 0) return true; // No file selected
+			return element.files[0].size <= param;
+		}, function (param, element) {
+			return "File size must be less than " + (param / 1024 / 1024) + " MB.";
+		});
+
+		// Link custom method to Cover input
+		$(document).ready(function () {
+			$("#Cover").rules("add", {
+				maxfilesize: 1048576 // 1MB in bytes
+			});
+		});
+	</script>
+	<script>
+				$(document).ready(function () {
+		  // Show existing image on page load if CoverName exists
+		  const existingImageSrc = $("#preview").attr("src");
+		  const previewWrapper = $("#preview-wrapper");
+
+		  // Check if there's an existing image path and it's not empty/default
+		  if (existingImageSrc && existingImageSrc !== "#" && existingImageSrc.trim() !== "") {
+			previewWrapper.show();
+		  }
+
+		  // Handle new file selection
+		  $("#Cover").change(function () {
+			const file = this.files[0];
+			const preview = $("#preview");
+
+			if (file) {
+			  const reader = new FileReader();
+
+			  reader.onload = function (e) {
+				preview.attr("src", e.target.result);
+				previewWrapper.show();
+			  };
+
+			  reader.readAsDataURL(file);
+			} else {
+			  // If no file selected, check if there was an original image to show
+			  const originalSrc = '@Url.Content($"~/assets/images/Movies/{Model.CoverName}")';
+			  if (originalSrc && originalSrc.trim() !== "" && !originalSrc.includes("{}")) {
+				preview.attr("src", originalSrc);
+				previewWrapper.show();
+			  } else {
+				previewWrapper.hide();
+				preview.attr("src", "#");
+			  }
+			}
+		  });
+		});
+
+	</script>
+	<script>
+		nload = function (e) {
+				preview.attr("src", e.target.result);
+				previewWrapper.show();
+			  };
+
+			  reader.readAsDataURL(file);
+			} else {
+			  // If no file selected, check if there was an original image to show
+			  const originalSrc = '@Url.Content($"~/assets/images/Movies/{Model.CoverName}")';
+			  if (originalSrc && originalSrc.trim() !== "" && !originalSrc.includes("{}")) {
+				preview.attr("src", originalSrc);
+				previewWrapper.show();
+			  } else {
+				previewWrapper.hide();
+				preview.attr("src", "#");
+			  }
+			}
+		  });
+		});</script>
+	<style>
+		.select2-container {
+			width: 100% !important;
+		}
+
+		.select2-container--default .select2-selection--multiple {
+			background: #e5e7eb;
+			border: 1px solid #d1d5db;
+			border-radius: 6px;
+			min-height: 42px;
+			padding: 6px 8px;
+			color: #374151;
+			align-items: center;
+			display: flex;
+			flex-wrap: wrap;
+		}
+
+			.select2-container--default .select2-selection--multiple:focus {
+				border-color: #3b82f6;
+				box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+			}
+
+			.select2-container--default .select2-selection--multiple .select2-selection__choice {
+				background: #6b7280;
+				border: 1px solid #4b5563;
+				color: #1f2937;
+				padding: 6px 12px;
+				border-radius: 16px;
+				margin: 2px;
+				font-weight: 500;
+				font-size: 14px;
+				line-height: 1.2;
+			}
+
+			.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+				color: #374151;
+				margin-right: 6px;
+				font-size: 14px;
+				line-height: 1;
+			}
+
+				.select2-container--default .select2-selection--multiple .select2-selection__choice__remove:hover {
+					color: #dc2626;
+				}
+
+		.select2-dropdown {
+			background: #e5e7eb;
+			border: 1px solid #d1d5db;
+			border-radius: 6px;
+			box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+		}
+
+		.select2-container--default .select2-results__option {
+			background: #e5e7eb;
+			color: #374151;
+			padding: 10px 12px;
+			border-bottom: 1px solid #e5e7eb;
+		}
+
+		.select2-container--default .select2-results__option--highlighted[aria-selected] {
+			background: #e5e7eb;
+			color: #1f2937;
+		}
+
+		.select2-container--default .select2-results__option[aria-selected=true] {
+			background: #d1d5db;
+			color: #1f2937;
+			font-weight: 500;
+		}
+
+		.select2-container--default .select2-search--inline .select2-search__field {
+			background: transparent;
+			color: #374151;
+			border: none;
+			outline: none;
+			padding: 4px 0;
+			margin: 2px 0;
+			line-height: 1.4;
+			vertical-align: middle;
+		}
+
+			.select2-container--default .select2-search--inline .select2-search__field::placeholder {
+				color: #9ca3af;
+			}
+
+		.select2-container--default .select2-selection--multiple .select2-selection__placeholder {
+			color: #9ca3af;
+			padding: 4px 0;
+			line-height: 1.4;
+		}
+
+		/* Fix text alignment in search field */
+		.select2-search--inline {
+			display: flex;
+			align-items: center;
+		}
+
+		.select2-selection__rendered {
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			gap: 2px;
+		}
+	</style>
+	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+}
