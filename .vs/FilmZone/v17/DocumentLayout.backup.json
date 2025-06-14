@@ -73,10 +73,6 @@
           "SelectedChildIndex": 4,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
-            },
-            {
               "$type": "Document",
               "DocumentIndex": 5,
               "Title": "CategoryProvider.cs",
@@ -105,13 +101,17 @@
               "EditorCaption": ""
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "Manage.cshtml",
               "DocumentMoniker": "C:\\Wesam\\Courses\\MVC PROJ\\FilmZone\\Views\\Category\\Manage.cshtml",
               "RelativeDocumentMoniker": "Views\\Category\\Manage.cshtml",
-              "ToolTip": "C:\\Wesam\\Courses\\MVC PROJ\\FilmZone\\Views\\Category\\Manage.cshtml*",
-              "RelativeToolTip": "Views\\Category\\Manage.cshtml*",
+              "ToolTip": "C:\\Wesam\\Courses\\MVC PROJ\\FilmZone\\Views\\Category\\Manage.cshtml",
+              "RelativeToolTip": "Views\\Category\\Manage.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-06-14T14:51:01.913Z",
@@ -125,7 +125,7 @@
               "RelativeDocumentMoniker": "Providers\\IMovieProvider.cs",
               "ToolTip": "C:\\Wesam\\Courses\\MVC PROJ\\FilmZone\\Providers\\IMovieProvider.cs",
               "RelativeToolTip": "Providers\\IMovieProvider.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-14T14:15:00.502Z",
               "EditorCaption": ""

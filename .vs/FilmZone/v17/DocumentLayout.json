@@ -1,65 +1,65 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Wesam\\Courses\\MVC PROJ\\FilmZone\\",
+  "WorkspaceRootPath": "C:\\Wesam\\Courses\\MVC PROJ\\TheFilmZone\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F5E9EB5A-51DC-4E19-8BE6-97CE9AB6A198}|FilmZone.csproj|c:\\wesam\\courses\\mvc proj\\filmzone\\providers\\imovieprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F5E9EB5A-51DC-4E19-8BE6-97CE9AB6A198}|FilmZone.csproj|c:\\wesam\\courses\\mvc proj\\thefilmzone\\providers\\imovieprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F5E9EB5A-51DC-4E19-8BE6-97CE9AB6A198}|FilmZone.csproj|solutionrelative:providers\\imovieprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F5E9EB5A-51DC-4E19-8BE6-97CE9AB6A198}|FilmZone.csproj|c:\\wesam\\courses\\mvc proj\\filmzone\\views\\category\\manage.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{F5E9EB5A-51DC-4E19-8BE6-97CE9AB6A198}|FilmZone.csproj|c:\\wesam\\courses\\mvc proj\\thefilmzone\\views\\category\\manage.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{F5E9EB5A-51DC-4E19-8BE6-97CE9AB6A198}|FilmZone.csproj|solutionrelative:views\\category\\manage.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F5E9EB5A-51DC-4E19-8BE6-97CE9AB6A198}|FilmZone.csproj|c:\\wesam\\courses\\mvc proj\\filmzone\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F5E9EB5A-51DC-4E19-8BE6-97CE9AB6A198}|FilmZone.csproj|c:\\wesam\\courses\\mvc proj\\thefilmzone\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F5E9EB5A-51DC-4E19-8BE6-97CE9AB6A198}|FilmZone.csproj|solutionrelative:controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F5E9EB5A-51DC-4E19-8BE6-97CE9AB6A198}|FilmZone.csproj|c:\\wesam\\courses\\mvc proj\\filmzone\\controllers\\moviescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F5E9EB5A-51DC-4E19-8BE6-97CE9AB6A198}|FilmZone.csproj|c:\\wesam\\courses\\mvc proj\\thefilmzone\\controllers\\moviescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F5E9EB5A-51DC-4E19-8BE6-97CE9AB6A198}|FilmZone.csproj|solutionrelative:controllers\\moviescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F5E9EB5A-51DC-4E19-8BE6-97CE9AB6A198}|FilmZone.csproj|c:\\wesam\\courses\\mvc proj\\filmzone\\views\\category\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{F5E9EB5A-51DC-4E19-8BE6-97CE9AB6A198}|FilmZone.csproj|c:\\wesam\\courses\\mvc proj\\thefilmzone\\views\\category\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{F5E9EB5A-51DC-4E19-8BE6-97CE9AB6A198}|FilmZone.csproj|solutionrelative:views\\category\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F5E9EB5A-51DC-4E19-8BE6-97CE9AB6A198}|FilmZone.csproj|c:\\wesam\\courses\\mvc proj\\filmzone\\providers\\categoryprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F5E9EB5A-51DC-4E19-8BE6-97CE9AB6A198}|FilmZone.csproj|c:\\wesam\\courses\\mvc proj\\thefilmzone\\providers\\categoryprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F5E9EB5A-51DC-4E19-8BE6-97CE9AB6A198}|FilmZone.csproj|solutionrelative:providers\\categoryprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F5E9EB5A-51DC-4E19-8BE6-97CE9AB6A198}|FilmZone.csproj|c:\\wesam\\courses\\mvc proj\\filmzone\\services\\moviesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F5E9EB5A-51DC-4E19-8BE6-97CE9AB6A198}|FilmZone.csproj|c:\\wesam\\courses\\mvc proj\\thefilmzone\\services\\moviesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F5E9EB5A-51DC-4E19-8BE6-97CE9AB6A198}|FilmZone.csproj|solutionrelative:services\\moviesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F5E9EB5A-51DC-4E19-8BE6-97CE9AB6A198}|FilmZone.csproj|c:\\wesam\\courses\\mvc proj\\filmzone\\providers\\movieprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F5E9EB5A-51DC-4E19-8BE6-97CE9AB6A198}|FilmZone.csproj|c:\\wesam\\courses\\mvc proj\\thefilmzone\\providers\\movieprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F5E9EB5A-51DC-4E19-8BE6-97CE9AB6A198}|FilmZone.csproj|solutionrelative:providers\\movieprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F5E9EB5A-51DC-4E19-8BE6-97CE9AB6A198}|FilmZone.csproj|c:\\wesam\\courses\\mvc proj\\filmzone\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F5E9EB5A-51DC-4E19-8BE6-97CE9AB6A198}|FilmZone.csproj|c:\\wesam\\courses\\mvc proj\\thefilmzone\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F5E9EB5A-51DC-4E19-8BE6-97CE9AB6A198}|FilmZone.csproj|solutionrelative:controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F5E9EB5A-51DC-4E19-8BE6-97CE9AB6A198}|FilmZone.csproj|c:\\wesam\\courses\\mvc proj\\filmzone\\services\\imoviesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F5E9EB5A-51DC-4E19-8BE6-97CE9AB6A198}|FilmZone.csproj|c:\\wesam\\courses\\mvc proj\\thefilmzone\\services\\imoviesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F5E9EB5A-51DC-4E19-8BE6-97CE9AB6A198}|FilmZone.csproj|solutionrelative:services\\imoviesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F5E9EB5A-51DC-4E19-8BE6-97CE9AB6A198}|FilmZone.csproj|c:\\wesam\\courses\\mvc proj\\filmzone\\services\\categoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F5E9EB5A-51DC-4E19-8BE6-97CE9AB6A198}|FilmZone.csproj|c:\\wesam\\courses\\mvc proj\\thefilmzone\\services\\categoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F5E9EB5A-51DC-4E19-8BE6-97CE9AB6A198}|FilmZone.csproj|solutionrelative:services\\categoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F5E9EB5A-51DC-4E19-8BE6-97CE9AB6A198}|FilmZone.csproj|c:\\wesam\\courses\\mvc proj\\filmzone\\viewmodels\\categoryindexviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F5E9EB5A-51DC-4E19-8BE6-97CE9AB6A198}|FilmZone.csproj|c:\\wesam\\courses\\mvc proj\\thefilmzone\\viewmodels\\categoryindexviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F5E9EB5A-51DC-4E19-8BE6-97CE9AB6A198}|FilmZone.csproj|solutionrelative:viewmodels\\categoryindexviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F5E9EB5A-51DC-4E19-8BE6-97CE9AB6A198}|FilmZone.csproj|c:\\wesam\\courses\\mvc proj\\filmzone\\services\\icategoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F5E9EB5A-51DC-4E19-8BE6-97CE9AB6A198}|FilmZone.csproj|c:\\wesam\\courses\\mvc proj\\thefilmzone\\services\\icategoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F5E9EB5A-51DC-4E19-8BE6-97CE9AB6A198}|FilmZone.csproj|solutionrelative:services\\icategoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F5E9EB5A-51DC-4E19-8BE6-97CE9AB6A198}|FilmZone.csproj|c:\\wesam\\courses\\mvc proj\\filmzone\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F5E9EB5A-51DC-4E19-8BE6-97CE9AB6A198}|FilmZone.csproj|c:\\wesam\\courses\\mvc proj\\thefilmzone\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F5E9EB5A-51DC-4E19-8BE6-97CE9AB6A198}|FilmZone.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F5E9EB5A-51DC-4E19-8BE6-97CE9AB6A198}|FilmZone.csproj|c:\\wesam\\courses\\mvc proj\\filmzone\\models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F5E9EB5A-51DC-4E19-8BE6-97CE9AB6A198}|FilmZone.csproj|c:\\wesam\\courses\\mvc proj\\thefilmzone\\models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F5E9EB5A-51DC-4E19-8BE6-97CE9AB6A198}|FilmZone.csproj|solutionrelative:models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -76,29 +76,27 @@
               "$type": "Document",
               "DocumentIndex": 5,
               "Title": "CategoryProvider.cs",
-              "DocumentMoniker": "C:\\Wesam\\Courses\\MVC PROJ\\FilmZone\\Providers\\CategoryProvider.cs",
+              "DocumentMoniker": "C:\\Wesam\\Courses\\MVC PROJ\\TheFilmZone\\Providers\\CategoryProvider.cs",
               "RelativeDocumentMoniker": "Providers\\CategoryProvider.cs",
-              "ToolTip": "C:\\Wesam\\Courses\\MVC PROJ\\FilmZone\\Providers\\CategoryProvider.cs",
+              "ToolTip": "C:\\Wesam\\Courses\\MVC PROJ\\TheFilmZone\\Providers\\CategoryProvider.cs",
               "RelativeToolTip": "Providers\\CategoryProvider.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-04T16:03:48.125Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "CategoryController.cs",
-              "DocumentMoniker": "C:\\Wesam\\Courses\\MVC PROJ\\FilmZone\\Controllers\\CategoryController.cs",
+              "DocumentMoniker": "C:\\Wesam\\Courses\\MVC PROJ\\TheFilmZone\\Controllers\\CategoryController.cs",
               "RelativeDocumentMoniker": "Controllers\\CategoryController.cs",
-              "ToolTip": "C:\\Wesam\\Courses\\MVC PROJ\\FilmZone\\Controllers\\CategoryController.cs",
+              "ToolTip": "C:\\Wesam\\Courses\\MVC PROJ\\TheFilmZone\\Controllers\\CategoryController.cs",
               "RelativeToolTip": "Controllers\\CategoryController.cs",
               "ViewState": "AgIAAAsAAAAAAAAAAAAmwBQAAABHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-04T16:02:50.552Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Bookmark",
@@ -108,24 +106,23 @@
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "Manage.cshtml",
-              "DocumentMoniker": "C:\\Wesam\\Courses\\MVC PROJ\\FilmZone\\Views\\Category\\Manage.cshtml",
+              "DocumentMoniker": "C:\\Wesam\\Courses\\MVC PROJ\\TheFilmZone\\Views\\Category\\Manage.cshtml",
               "RelativeDocumentMoniker": "Views\\Category\\Manage.cshtml",
-              "ToolTip": "C:\\Wesam\\Courses\\MVC PROJ\\FilmZone\\Views\\Category\\Manage.cshtml",
+              "ToolTip": "C:\\Wesam\\Courses\\MVC PROJ\\TheFilmZone\\Views\\Category\\Manage.cshtml",
               "RelativeToolTip": "Views\\Category\\Manage.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-14T14:51:01.913Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-14T14:51:01.913Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "IMovieProvider.cs",
-              "DocumentMoniker": "C:\\Wesam\\Courses\\MVC PROJ\\FilmZone\\Providers\\IMovieProvider.cs",
+              "DocumentMoniker": "C:\\Wesam\\Courses\\MVC PROJ\\TheFilmZone\\Providers\\IMovieProvider.cs",
               "RelativeDocumentMoniker": "Providers\\IMovieProvider.cs",
-              "ToolTip": "C:\\Wesam\\Courses\\MVC PROJ\\FilmZone\\Providers\\IMovieProvider.cs",
+              "ToolTip": "C:\\Wesam\\Courses\\MVC PROJ\\TheFilmZone\\Providers\\IMovieProvider.cs",
               "RelativeToolTip": "Providers\\IMovieProvider.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAABcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-14T14:15:00.502Z",
               "EditorCaption": ""
@@ -134,144 +131,133 @@
               "$type": "Document",
               "DocumentIndex": 8,
               "Title": "HomeController.cs",
-              "DocumentMoniker": "C:\\Wesam\\Courses\\MVC PROJ\\FilmZone\\Controllers\\HomeController.cs",
+              "DocumentMoniker": "C:\\Wesam\\Courses\\MVC PROJ\\TheFilmZone\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "Controllers\\HomeController.cs",
-              "ToolTip": "C:\\Wesam\\Courses\\MVC PROJ\\FilmZone\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Wesam\\Courses\\MVC PROJ\\TheFilmZone\\Controllers\\HomeController.cs",
               "RelativeToolTip": "Controllers\\HomeController.cs",
               "ViewState": "AgIAABAAAAAAAAAAAAAAABMAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-14T13:45:35.07Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-14T13:45:35.07Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 9,
               "Title": "IMoviesService.cs",
-              "DocumentMoniker": "C:\\Wesam\\Courses\\MVC PROJ\\FilmZone\\Services\\IMoviesService.cs",
+              "DocumentMoniker": "C:\\Wesam\\Courses\\MVC PROJ\\TheFilmZone\\Services\\IMoviesService.cs",
               "RelativeDocumentMoniker": "Services\\IMoviesService.cs",
-              "ToolTip": "C:\\Wesam\\Courses\\MVC PROJ\\FilmZone\\Services\\IMoviesService.cs",
+              "ToolTip": "C:\\Wesam\\Courses\\MVC PROJ\\TheFilmZone\\Services\\IMoviesService.cs",
               "RelativeToolTip": "Services\\IMoviesService.cs",
               "ViewState": "AgIAAA0AAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-14T13:43:04.234Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-14T13:43:04.234Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
               "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Wesam\\Courses\\MVC PROJ\\FilmZone\\Views\\Category\\Index.cshtml",
+              "DocumentMoniker": "C:\\Wesam\\Courses\\MVC PROJ\\TheFilmZone\\Views\\Category\\Index.cshtml",
               "RelativeDocumentMoniker": "Views\\Category\\Index.cshtml",
-              "ToolTip": "C:\\Wesam\\Courses\\MVC PROJ\\FilmZone\\Views\\Category\\Index.cshtml",
+              "ToolTip": "C:\\Wesam\\Courses\\MVC PROJ\\TheFilmZone\\Views\\Category\\Index.cshtml",
               "RelativeToolTip": "Views\\Category\\Index.cshtml",
               "ViewState": "AgIAAAUAAAAAAAAAAAAAwBYAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-14T13:35:06.065Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-14T13:35:06.065Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
               "Title": "MoviesController.cs",
-              "DocumentMoniker": "C:\\Wesam\\Courses\\MVC PROJ\\FilmZone\\Controllers\\MoviesController.cs",
+              "DocumentMoniker": "C:\\Wesam\\Courses\\MVC PROJ\\TheFilmZone\\Controllers\\MoviesController.cs",
               "RelativeDocumentMoniker": "Controllers\\MoviesController.cs",
-              "ToolTip": "C:\\Wesam\\Courses\\MVC PROJ\\FilmZone\\Controllers\\MoviesController.cs",
+              "ToolTip": "C:\\Wesam\\Courses\\MVC PROJ\\TheFilmZone\\Controllers\\MoviesController.cs",
               "RelativeToolTip": "Controllers\\MoviesController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAcwB8AAABPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-14T12:07:52.49Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-14T12:07:52.49Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
               "Title": "MovieProvider.cs",
-              "DocumentMoniker": "C:\\Wesam\\Courses\\MVC PROJ\\FilmZone\\Providers\\MovieProvider.cs",
+              "DocumentMoniker": "C:\\Wesam\\Courses\\MVC PROJ\\TheFilmZone\\Providers\\MovieProvider.cs",
               "RelativeDocumentMoniker": "Providers\\MovieProvider.cs",
-              "ToolTip": "C:\\Wesam\\Courses\\MVC PROJ\\FilmZone\\Providers\\MovieProvider.cs",
+              "ToolTip": "C:\\Wesam\\Courses\\MVC PROJ\\TheFilmZone\\Providers\\MovieProvider.cs",
               "RelativeToolTip": "Providers\\MovieProvider.cs",
               "ViewState": "AgIAAGUAAAAAAAAAAAAewHIAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-04T13:40:06.732Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-04T13:40:06.732Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
               "Title": "MoviesService.cs",
-              "DocumentMoniker": "C:\\Wesam\\Courses\\MVC PROJ\\FilmZone\\Services\\MoviesService.cs",
+              "DocumentMoniker": "C:\\Wesam\\Courses\\MVC PROJ\\TheFilmZone\\Services\\MoviesService.cs",
               "RelativeDocumentMoniker": "Services\\MoviesService.cs",
-              "ToolTip": "C:\\Wesam\\Courses\\MVC PROJ\\FilmZone\\Services\\MoviesService.cs",
+              "ToolTip": "C:\\Wesam\\Courses\\MVC PROJ\\TheFilmZone\\Services\\MoviesService.cs",
               "RelativeToolTip": "Services\\MoviesService.cs",
               "ViewState": "AgIAAGMAAAAAAAAAAAAgwJ4AAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-14T12:33:54.762Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-14T12:33:54.762Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 11,
               "Title": "CategoryIndexViewModel.cs",
-              "DocumentMoniker": "C:\\Wesam\\Courses\\MVC PROJ\\FilmZone\\ViewModels\\CategoryIndexViewModel.cs",
+              "DocumentMoniker": "C:\\Wesam\\Courses\\MVC PROJ\\TheFilmZone\\ViewModels\\CategoryIndexViewModel.cs",
               "RelativeDocumentMoniker": "ViewModels\\CategoryIndexViewModel.cs",
-              "ToolTip": "C:\\Wesam\\Courses\\MVC PROJ\\FilmZone\\ViewModels\\CategoryIndexViewModel.cs",
+              "ToolTip": "C:\\Wesam\\Courses\\MVC PROJ\\TheFilmZone\\ViewModels\\CategoryIndexViewModel.cs",
               "RelativeToolTip": "ViewModels\\CategoryIndexViewModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-04T16:04:49.076Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-04T16:04:49.076Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 13,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Wesam\\Courses\\MVC PROJ\\FilmZone\\Program.cs",
+              "DocumentMoniker": "C:\\Wesam\\Courses\\MVC PROJ\\TheFilmZone\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Wesam\\Courses\\MVC PROJ\\FilmZone\\Program.cs",
+              "ToolTip": "C:\\Wesam\\Courses\\MVC PROJ\\TheFilmZone\\Program.cs",
               "RelativeToolTip": "Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-14T12:17:46.623Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-14T12:17:46.623Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 12,
               "Title": "ICategoryService.cs",
-              "DocumentMoniker": "C:\\Wesam\\Courses\\MVC PROJ\\FilmZone\\Services\\ICategoryService.cs",
+              "DocumentMoniker": "C:\\Wesam\\Courses\\MVC PROJ\\TheFilmZone\\Services\\ICategoryService.cs",
               "RelativeDocumentMoniker": "Services\\ICategoryService.cs",
-              "ToolTip": "C:\\Wesam\\Courses\\MVC PROJ\\FilmZone\\Services\\ICategoryService.cs",
+              "ToolTip": "C:\\Wesam\\Courses\\MVC PROJ\\TheFilmZone\\Services\\ICategoryService.cs",
               "RelativeToolTip": "Services\\ICategoryService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-04T16:04:13.161Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-04T16:04:13.161Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 10,
               "Title": "CategoryService.cs",
-              "DocumentMoniker": "C:\\Wesam\\Courses\\MVC PROJ\\FilmZone\\Services\\CategoryService.cs",
+              "DocumentMoniker": "C:\\Wesam\\Courses\\MVC PROJ\\TheFilmZone\\Services\\CategoryService.cs",
               "RelativeDocumentMoniker": "Services\\CategoryService.cs",
-              "ToolTip": "C:\\Wesam\\Courses\\MVC PROJ\\FilmZone\\Services\\CategoryService.cs",
+              "ToolTip": "C:\\Wesam\\Courses\\MVC PROJ\\TheFilmZone\\Services\\CategoryService.cs",
               "RelativeToolTip": "Services\\CategoryService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-04T16:04:12.207Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-04T16:04:12.207Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 14,
               "Title": "Category.cs",
-              "DocumentMoniker": "C:\\Wesam\\Courses\\MVC PROJ\\FilmZone\\Models\\Category.cs",
+              "DocumentMoniker": "C:\\Wesam\\Courses\\MVC PROJ\\TheFilmZone\\Models\\Category.cs",
               "RelativeDocumentMoniker": "Models\\Category.cs",
-              "ToolTip": "C:\\Wesam\\Courses\\MVC PROJ\\FilmZone\\Models\\Category.cs",
+              "ToolTip": "C:\\Wesam\\Courses\\MVC PROJ\\TheFilmZone\\Models\\Category.cs",
               "RelativeToolTip": "Models\\Category.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-04T16:04:56.674Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-04T16:04:56.674Z"
             }
           ]
         }
