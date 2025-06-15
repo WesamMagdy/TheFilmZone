@@ -39,7 +39,7 @@
         }
         public async Task UpdateAsync(T entity)
         {
-            //    await dbset.Update(entity);
+            //   await dbset.Update(entity);
         }
         public void Delete(T entity)
         {

@@ -31,10 +31,12 @@
         }
         public async Task<Dictionary<string,string>?> AddCategory(CategoryViewModel vm)
         {
-            var category = new Category
+            var category = new Category();
+            if(vm.CategoryId!=0)
             {
-                Name = vm.CategoryName
-            };
+                category.Id = vm.CategoryId;
+            }
+            category.Name = vm.CategoryName;
            return await CategoryService.SaveCategory(category);
         }
         public async Task<CategoryViewModel> ToEditVM(int id)
@@ -46,10 +48,6 @@
                 CategoryName = category.Name
             };
         }
-        public async Task EditCategory(CategoryViewModel vm)
-        {
-            var category = await CategoryService.GetById(vm.CategoryId);
-            //  CategoryService.UpdateCategory(category)
-        }
+       
     }
 }

@@ -1,0 +1,29 @@
+﻿@model FilmZone.ViewModels.CategoryViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+<div>
+        <h2 class="fw-semibold text-secondary-emphasis mb-1 mt-3">
+            ✏️ Edit Category
+        </h2>
+        <p class="text-muted mb-0">Update the selected movie category by changing its name below.</p>
+    </div>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" method="post">
+
+            <div class="form-group">
+                <input asp-for="@Model.CategoryId" type="hidden" />
+                <label asp-for="CategoryName" class="control-label">Category Name</label>
+                <input asp-for="CategoryName" class="form-control" placeholder="Enter Category Name" />
+                <span asp-validation-for="CategoryName" class="text-danger mt-5"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Update" class="btn btn-outline-success mt-3" />
+            </div>
+        </form>
+    </div>
+</div>
+

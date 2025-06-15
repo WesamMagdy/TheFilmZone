@@ -7,7 +7,7 @@ namespace FilmZone.Services
     {
         private IRepository<Category> CategoryRepo;
         private IMoviesService MoviesService;
-        public CategoryService(IRepository<Category> categoryRepo,IMoviesService moviesService) 
+        public CategoryService(IRepository<Category> categoryRepo, IMoviesService moviesService)
         {
             CategoryRepo = categoryRepo;
             MoviesService = moviesService;
@@ -27,10 +27,10 @@ namespace FilmZone.Services
             var movies = MoviesService.GetAll().Where(m => m.CategoryId == categoryId).AsQueryable();
             return movies.Count();
         }
-        public async Task<Dictionary<string,string>?> SaveCategory(Category category)
+        public async Task<Dictionary<string, string>?> SaveCategory(Category category)
         {
             var errors = new Dictionary<string, string>();
-            var categoriesName = CategoryRepo.GetAll().Select(c=>c.Name.ToLower()).ToList();
+            var categoriesName = CategoryRepo.GetAll().Where(c=>c.Id!=category.Id).Select(c => c.Name.ToLower()).ToList();
             if (string.IsNullOrWhiteSpace(category.Name))
             {
                 errors[nameof(CategoryViewModel.CategoryName)] = "Category Name is required";
@@ -39,26 +39,27 @@ namespace FilmZone.Services
             {
                 errors[nameof(CategoryViewModel.CategoryName)] = "Category Already Exist";
             }
+            if (!category.Name.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)))
+            {
+                errors[nameof(CategoryViewModel.CategoryName)] = "Category name only letters and spaces";
+            }
             if (errors.Any())
             {
                 return errors;
             }
-            await CategoryRepo.AddAsync(category);
+            if (category.Id == 0) //if its a new category add
+            {
+                await CategoryRepo.AddAsync(category);
+            }
+            else //Already exist update only dont add
+            {
+                 CategoryRepo.Update(category);   
+
+            }
             await CategoryRepo.SaveChangesAsync();
             return null;
         }
-        public async Task EditCategory(Category category)
-        {
-            var errors = new Dictionary<string, string>();
-
-            var categoriesName = CategoryRepo.GetAll().Select(c => c.Name.ToLower()).ToList();
-
-            if (categoriesName.Contains(category.Name.ToLower()))
-            {
-                errors[nameof(CategoryViewModel.CategoryName)] = "Category Already Exist";
-            }
-            await CategoryRepo.UpdateAsync(category);
-            await CategoryRepo.SaveChangesAsync();
-        }
+       
+       
     }
 }

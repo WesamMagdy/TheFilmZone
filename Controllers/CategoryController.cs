@@ -30,7 +30,7 @@ namespace FilmZone.Controllers
         // POST: CategoryController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(CategoryViewModel Vm)
+        public async Task<ActionResult> Create(CategoryViewModel Vm)//also used for Edit, because we use the same ViewModel for Create and Edit
         {
             var errors = await categoryProvider.AddCategory(Vm); //if there is error returning will assign to errors if not => null
             if(errors!=null)
@@ -40,8 +40,15 @@ namespace FilmZone.Controllers
 
             if (!ModelState.IsValid)
             {
-                var ViewModel = categoryProvider.CreateCategory();
-                return View(ViewModel);
+                if(Vm.CategoryId == 0)//if its a new category
+                {
+                    return View(categoryProvider.CreateCategory());
+                }
+                else //if its an existing category we are editing
+                {
+                    return View(await categoryProvider.ToEditVM(Vm.CategoryId));
+                }
+               
             }
             return RedirectToAction(nameof(Index));
         }
@@ -54,15 +61,6 @@ namespace FilmZone.Controllers
             var categoryViewModel = await categoryProvider.ToEditVM(id);
             return View(categoryViewModel);
         }
-
-        // POST: CategoryController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(CategoryViewModel categoryViewModel)
-        {
-            return View();
-        }
-
         // GET: CategoryController/Delete/5
         public ActionResult Delete(int id)
         {
