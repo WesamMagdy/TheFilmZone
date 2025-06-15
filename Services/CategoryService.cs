@@ -1,4 +1,5 @@
 ﻿using FilmZone.Models;
+using Microsoft.Data.SqlClient;
 using Microsoft.IdentityModel.Tokens;
 
 namespace FilmZone.Services
@@ -59,7 +60,24 @@ namespace FilmZone.Services
             await CategoryRepo.SaveChangesAsync();
             return null;
         }
-       
-       
+        public async Task<(bool Success, string? ErrorMessage)> Delete(int id)
+        {
+            try
+            {
+                var category = await CategoryRepo.GetByIdAsync(id);
+                if (category != null) // Only delete if found
+                {
+                    CategoryRepo.Delete(category);
+                    await CategoryRepo.SaveChangesAsync();
+                }
+
+                return (true, null);
+            }     
+            catch
+            {
+                return (false, "Cannot Delete a Non Empty Category");
+            }
+        }
+
     }
 }

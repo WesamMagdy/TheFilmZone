@@ -48,6 +48,9 @@
                 CategoryName = category.Name
             };
         }
-       
+       public async Task Delete (int id)
+        {
+           await CategoryService.Delete(id);
+        }
     }
 }

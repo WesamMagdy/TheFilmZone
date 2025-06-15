@@ -46,7 +46,7 @@ namespace FilmZone.Controllers
                 }
                 else //if its an existing category we are editing
                 {
-                    return View(await categoryProvider.ToEditVM(Vm.CategoryId));
+                    return View(Vm);
                 }
                
             }
@@ -61,25 +61,21 @@ namespace FilmZone.Controllers
             var categoryViewModel = await categoryProvider.ToEditVM(id);
             return View(categoryViewModel);
         }
-        // GET: CategoryController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
         // POST: CategoryController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<ActionResult> Delete(int id)
         {
-            try
+            var status =await categoryProvider.Delete(id);
+            if (status.Success)
             {
-                return RedirectToAction(nameof(Index));
+                TempData["SuccessMessage"] = "Category Deleted Successfully.";
             }
-            catch
+            else
             {
-                return View();
+                TempData["ErrorMessage"] = status.ErrorMessage;
             }
+            return RedirectToAction(nameof(Index));
         }
     }
 }

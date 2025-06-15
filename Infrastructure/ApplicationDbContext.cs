@@ -24,6 +24,11 @@ namespace FilmZone.Infrastructure
            .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Category>()
+                .HasMany(c => c.Movies)
+                .WithOne(m => m.Category)
+                .HasForeignKey(m => m.CategoryId)
+                .OnDelete(DeleteBehavior.NoAction);
+                 modelBuilder.Entity<Category>()
                 .HasData(new Category[]
                 {
                     new Category { Id = 1, Name = "Action" },
@@ -37,6 +42,7 @@ namespace FilmZone.Infrastructure
                     new Category { Id = 9, Name = "Documentary" },
                     new Category { Id = 10, Name = "Animation" }
                 });
+            
             modelBuilder.Entity<StreamingService>()
                  .HasData(new StreamingService[]
                  {
