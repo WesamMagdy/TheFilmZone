@@ -27,17 +27,17 @@ namespace FilmZone.Services
             var MaxSize = 1 * 1024 * 1024;
             if (!allowedExtension.Contains(Path.GetExtension(movie.Cover).ToLowerInvariant().TrimStart('.'))) //check if file extension is in allowed
             {
-                errors[nameof(movie.Cover)] = "Only png/jpg/jpeg Are Allowed!";
+                errors[nameof(CreateMovieViewModel.Cover)] = "Only png/jpg/jpeg Are Allowed!";
             }
             if (CoverSize > MaxSize) //check size is under 1MB
             {
                 if (errors.ContainsKey(nameof(Movie.Cover))) // To Display both errors
                 {
-                    errors[nameof(movie.Cover)] += $", And Max Size Is {MaxSize / 1024 / 1024}MB";
+                    errors[nameof(CreateMovieViewModel.Cover)] += $", And Max Size Is {MaxSize / 1024 / 1024}MB";
                 }
                 else // only Size is the problem
                 {
-                    errors[nameof(movie.Cover)] = $"Max Size Is {MaxSize / 1024 / 1024}MB";
+                    errors[nameof(CreateMovieViewModel.Cover)] = $"Max Size Is {MaxSize / 1024 / 1024}MB";
 
                 }
 
@@ -58,17 +58,17 @@ namespace FilmZone.Services
             var MaxSize = 1 * 1024 * 1024;
             if (!allowedExtension.Contains(Path.GetExtension(movie.Cover).ToLowerInvariant().TrimStart('.'))) //check if file extension is in allowed
             {
-                errors[nameof(movie.Cover)] = "Only png/jpg/jpeg Are Allowed!";
+                errors[nameof(CreateMovieViewModel.Cover)] = "Only png/jpg/jpeg Are Allowed!";
             }
             if (CoverSize > MaxSize) //check size is under 1MB
             {
                 if (errors.ContainsKey(nameof(Movie.Cover))) // To Display both errors
                 {
-                    errors[nameof(movie.Cover)] += $", And Max Size Is {MaxSize / 1024 / 1024}MB";
+                    errors[nameof(CreateMovieViewModel.Cover)] += $", And Max Size Is {MaxSize / 1024 / 1024}MB";
                 }
                 else // only Size is the problem
                 {
-                    errors[nameof(movie.Cover)] = $"Max Size Is {MaxSize / 1024 / 1024}MB";
+                    errors[nameof(CreateMovieViewModel.Cover)] = $"Max Size Is {MaxSize / 1024 / 1024}MB";
 
                 }
 

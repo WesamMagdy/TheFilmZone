@@ -14,7 +14,6 @@ namespace FilmZone.Controllers
             
         public async Task<ActionResult> Index()
         {
-           
             return View(await categoryProvider.GetCategoryIndexView());
         }
         public async Task<IActionResult> Manage()
@@ -33,12 +32,17 @@ namespace FilmZone.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(CategoryViewModel Vm)
         {
+            var errors = await categoryProvider.AddCategory(Vm); //if there is error returning will assign to errors if not => null
+            if(errors!=null)
+            {
+                foreach (var error in errors) { ModelState.AddModelError(error.Key, error.Value); } //add those errors in the ModelState validations
+            }
+
             if (!ModelState.IsValid)
             {
                 var ViewModel = categoryProvider.CreateCategory();
                 return View(ViewModel);
             }
-            await categoryProvider.AddCategory(Vm);
             return RedirectToAction(nameof(Index));
         }
 
@@ -47,7 +51,7 @@ namespace FilmZone.Controllers
         public async Task<ActionResult> Edit(int id)
         {
 
-            var categoryViewModel = await categoryProvider.ToEdit(id);
+            var categoryViewModel = await categoryProvider.ToEditVM(id);
             return View(categoryViewModel);
         }
 
