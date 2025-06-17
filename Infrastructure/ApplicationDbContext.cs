@@ -1,19 +1,23 @@
 ﻿using FilmZone.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.General;
 
 namespace FilmZone.Infrastructure
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
         }
         public DbSet<Movie> Movies;
-        public DbSet<Category> Categories;
-        public DbSet<StreamingService> StreamingServices;
+        public DbSet<Category> Categories ;
+        public DbSet<StreamingService> StreamingServices ;
         public DbSet<MovieStreamingService> MovieStreamingServices;
-
+    
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<MovieStreamingService>()
                  .HasKey(mss => new { mss.MovieId, mss.StreamingServiceId });
             // Configure your entity mappings here

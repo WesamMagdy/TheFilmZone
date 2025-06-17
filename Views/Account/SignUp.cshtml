@@ -1,0 +1,80 @@
+﻿@model FilmZone.ViewModels.Identitiy.RegisterViewModel
+@{
+    ViewData["Title"] = "SignUp";
+    Layout = "~/Views/Shared/_AuthLayout.cshtml";
+}
+
+<div class="signup-header">
+    <p class="signup-subtitle">Create your account to discover amazing movies</p>
+</div>
+
+
+<form asp-action="SignUp">
+    <div asp-validation-summary="ModelOnly" class="validation-summary text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="FristName" class="form-label">First Name</label>
+        <input asp-for="FristName" class="form-input" placeholder="Enter your first name" />
+        <span asp-validation-for="FristName" class="validation-message text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="LastName" class="form-label">Last Name</label>
+        <input asp-for="LastName" class="form-input" placeholder="Enter your last name" />
+        <span asp-validation-for="LastName" class="validation-message text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Email" class="form-label">Email Address</label>
+        <input asp-for="Email" class="form-input" placeholder="Enter your email" />
+        <span asp-validation-for="Email" class="validation-message text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Password" class="form-label">Password</label>
+        <input asp-for="Password" class="form-input" placeholder="Create a strong password" type="password" />
+        <span asp-validation-for="Password" class="validation-message text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ConfirmPassword" class="form-label">Confirm Password</label>
+        <input asp-for="ConfirmPassword" class="form-input" placeholder="Confirm your password" type="password" />
+        <span asp-validation-for="ConfirmPassword" class="validation-message text-danger"></span>
+    </div>
+
+    <button type="submit" class="signup-btn">Create Account</button>
+</form>
+<div class="login-link">
+    Already have an account? <a asp-action="Login">Sign In</a>
+</div>
+
+@section ValidationScriptsPartial {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+<style>
+    .validation-summary {
+        background: rgba(239, 68, 68, 0.1);
+        border: 1px solid rgba(239, 68, 68, 0.3);
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+        color: #fca5a5;
+    }
+
+        .validation-summary ul {
+            margin: 0;
+            padding-left: 1.25rem;
+        }
+
+    .validation-message {
+        display: block;
+        font-size: 0.875rem;
+        margin-top: 0.5rem;
+        color: #fca5a5 !important;
+    }
+
+    .text-danger {
+        color: #fca5a5 !important;
+    }
+</style>

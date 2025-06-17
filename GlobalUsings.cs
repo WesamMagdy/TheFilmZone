@@ -6,3 +6,4 @@ global using Microsoft.AspNetCore.Mvc.Rendering;
 global using FilmZone.Providers;
 global using FilmZone.Models;
 global using FilmZone.Services;
+global using Microsoft.AspNetCore.Authorization;

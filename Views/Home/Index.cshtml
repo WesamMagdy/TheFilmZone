@@ -1,41 +1,67 @@
 ﻿@model IEnumerable<FilmZone.ViewModels.MovieIndexVM>
 
 @{
-	ViewData["Title"] = "Index";
+	if(Model.Any()){
+	if (Model.All(m => m.CategoryId == Model.First().CategoryId)) 
+	{ ViewData["Title"] = Model.First().Category; }
+	}
 }
 
 <div class="row mt-5">
 	@foreach (var movie in Model)
 	{
 		<div class="col-lg-4 col-md-6">
-			<a class="card text-white rounded-3 overflow-hidden bg-dark mb-3 rounded-1 text-decoration-none"
-			   data-category="@movie.Category"
-			   asp-action="Details"
-			   asp-controller="Movies"
-			   asp-route-id="@movie.Id"
-			   style="max-width: 22rem;">
-				<div class="card-body m-2 rounded-2" style="background-image: url('@Url.Content($"~/assets/images/Movies/{movie.Cover}")'); background-size:cover ; background-position:center; height:500px">
-					<div class="d-flex align-items-xl-end h-100 ">
-						<span class="badge rounded-pill bg-light fs-6">@movie.Category</span>
+			<div class="card text-white rounded-3 overflow-hidden bg-dark mb-3 rounded-1 text-decoration-none"
+				 style="max-width: 22rem;">
+
+				<a asp-action="Details"
+				   asp-controller="Movies"
+				   asp-route-id="@movie.Id"
+				   class="text-decoration-none text-white">
+					<div class="card-body m-2 rounded-2"
+						 style="background-image: url('@Url.Content($"~/assets/images/Movies/{movie.Cover}")'); background-size: cover; background-position: center; height: 500px;">
 					</div>
-				</div>
-				<div class="card-footer py-0 px-2 ">
-					<h5>@movie.Title</h5>
-					<div style="display: flex; flex-wrap: wrap; gap: 8px; padding-top: 2px;">
-						@foreach (var StreamLogo in movie.StreamingLogos)
-						{
-							<img src="@Url.Content($"~/assets/images/Logos/{StreamLogo}.png")"
-								 alt="@StreamLogo"
-								 class="stream-logo me-2 fs-4 mb-2" />
-						}
+					<div class="card-footer py-0 px-2">
+						<h5>@movie.Title</h5>
+						<div style="display: flex; flex-wrap: wrap; gap: 8px; padding-top: 2px;">
+							@foreach (var StreamLogo in movie.StreamingLogos)
+							{
+								<img src="@Url.Content($"~/assets/images/Logos/{StreamLogo}.png")"
+									 alt="@StreamLogo"
+									 class="stream-logo me-2 fs-4 mb-2" />
+							}
+						</div>
 					</div>
-				</div>
-			</a>
+				</a>
+
+				<a asp-action="Index"
+				   asp-route-id="@movie.CategoryId"
+				   class="badge rounded-pill bg-light fs-6 ms-3 mt-n3 position-absolute category-badge	"
+				   style="bottom: 105px;z-index: 10; text-decoration: none;">
+					@movie.Category
+				</a>
+
+				
+			</div>
 		</div>
+
 	}
 </div>
 </p>
 <style>
+	.category-badge {
+		transition: box-shadow 0.4s ease, background-color 0.3s ease;
+		background-color: #0d6efd; /* Bootstrap primary blue */
+		color: white;
+		cursor: pointer;
+		text-decoration: none;
+	}
+
+		.category-badge:hover {
+			box-shadow: 0 0 12px 4px #0d6efd;
+			background-color: #0b5ed7; /* Slightly darker on hover */
+		}
+
 	.stream-logo {
 		width: 32px;
 		height: 32px;

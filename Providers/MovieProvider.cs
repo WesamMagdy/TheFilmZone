@@ -63,6 +63,7 @@ namespace FilmZone.Providers
                     Title = movie.Title,
                     Cover = movie.Cover,
                     Category = category.Name,
+                    CategoryId=category.Id,
                     StreamingLogos = Streams.Select(s => s.Logo).ToList(),
                 });
             }
@@ -104,6 +105,7 @@ namespace FilmZone.Providers
                     Title = movie.Title,
                     Cover = movie.Cover,
                     Category = category.Name,
+                    CategoryId = category.Id,
                     StreamingLogos = Streams.Select(s => s.Logo).ToList(),
                 });
             }
@@ -124,6 +126,7 @@ namespace FilmZone.Providers
                     Title = movie.Title,
                     Cover = movie.Cover,
                     Category = category.Name,
+                    CategoryId = category.Id,
                     StreamingLogos = Streams.Select(s => s.Logo).ToList(),
                 });
             }
@@ -139,6 +142,7 @@ namespace FilmZone.Providers
             {
                 Title = movie.Title,
                 Category = category.Name,
+                CategoryId= category.Id,
                 Description = movie.Description,
                 Cover = movie.Cover,
                 StreamingLogos = Streams.Select(s => s.Logo).ToList()

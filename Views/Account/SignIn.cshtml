@@ -1,0 +1,89 @@
+﻿@model FilmZone.ViewModels.Identitiy.LoginViewModel
+@{
+    ViewData["Title"] = "SignUp";
+    Layout = "~/Views/Shared/_AuthLayout.cshtml";
+}
+
+<div class="signup-header">
+    <p class="signup-subtitle">Log in to your account to discover amazing movies</p>
+</div>
+
+
+<form asp-action="SignIn">
+    <div asp-validation-summary="ModelOnly" class="validation-summary text-danger"></div>
+
+ 
+    <div class="form-group">
+        <label asp-for="Email" class="form-label">Email Address</label>
+        <input asp-for="Email" class="form-input" placeholder="Enter your email" />
+        <span asp-validation-for="Email" class="validation-message text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Password" class="form-label">Password</label>
+        <input asp-for="Password" class="form-input" placeholder="Create a strong password" type="password" />
+        <span asp-validation-for="Password" class="validation-message text-danger"></span>
+        
+    </div>
+    <div class="form-check">
+        <label asp-for="RememberMe" class="form-check-label">Remember Me</label>
+        <input asp-for="RememberMe" class="form-check-input" />
+    </div>
+    <span asp-validation-for="RememberMe" class="validation-message text-danger"></span>
+
+
+    <button type="submit" class="signup-btn">Sign In</button>
+</form>
+<div class="fs-4 login-link">
+   Frist Time Visiting? Join Us Now!
+   <br />
+   <a asp-action="SignUp">Sign Up</a>
+</div>
+
+@section ValidationScriptsPartial {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+<style>
+    .validation-summary {
+        background: rgba(239, 68, 68, 0.1);
+        border: 1px solid rgba(239, 68, 68, 0.3);
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+        color: #fca5a5;
+    }
+
+        .validation-summary ul {
+            margin: 0;
+            padding-left: 1.25rem;
+        }
+
+    .validation-message {
+        display: block;
+        font-size: 0.875rem;
+        margin-top: 0.5rem;
+        color: #fca5a5 !important;
+    }
+
+    .text-danger {
+        color: #fca5a5 !important;
+    }
+
+    .signup-link {
+        color: #007bff;
+        text-decoration: none;
+        font-weight: 700;
+    font-size: 1.5rem !important;
+        text-transform: uppercase; /* or capitalize */
+        letter-spacing: 0.5px;
+        margin-top: -5px;
+        transition: color 0.3s, text-decoration 0.3s;
+    }
+
+        .signup-link:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+
+</style>

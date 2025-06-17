@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 
 namespace FilmZone.Controllers
 {
+    [Authorize(Roles = "Admin")]
+
     public class CategoryController : Controller
     {
         private readonly CategoryProvider categoryProvider;
@@ -11,11 +13,12 @@ namespace FilmZone.Controllers
         {
             this.categoryProvider = categoryProvider;
         }
-            
+        [AllowAnonymous]
         public async Task<ActionResult> Index()
         {
             return View(await categoryProvider.GetCategoryIndexView());
         }
+
         public async Task<IActionResult> Manage()
         {
             return View(await categoryProvider.GetCategoryIndexView());
@@ -75,7 +78,7 @@ namespace FilmZone.Controllers
             {
                 TempData["ErrorMessage"] = status.ErrorMessage;
             }
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Manage));
         }
     }
 }

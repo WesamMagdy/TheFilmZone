@@ -31,7 +31,7 @@ namespace FilmZone.Services
         public async Task<Dictionary<string, string>?> SaveCategory(Category category)
         {
             var errors = new Dictionary<string, string>();
-            var categoriesName = CategoryRepo.GetAll().Where(c=>c.Id!=category.Id).Select(c => c.Name.ToLower()).ToList();
+            var categoriesName = CategoryRepo.GetAll().Where(c=>c.Id!=category.Id).Select(c => c.Name.ToLower()).AsQueryable().ToList();
             if (string.IsNullOrWhiteSpace(category.Name))
             {
                 errors[nameof(CategoryViewModel.CategoryName)] = "Category Name is required";
@@ -42,7 +42,7 @@ namespace FilmZone.Services
             }
             if (!category.Name.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)))
             {
-                errors[nameof(CategoryViewModel.CategoryName)] = "Category name only letters and spaces";
+                errors[nameof(CategoryViewModel.CategoryName)] = "Category name can only be letters";
             }
             if (errors.Any())
             {
@@ -75,7 +75,7 @@ namespace FilmZone.Services
             }     
             catch
             {
-                return (false, "Cannot Delete a Non Empty Category");
+                return (false, "Cannot Delete a Non Empty Category (Change Movies Category or Delete Them to Procced)");
             }
         }
 

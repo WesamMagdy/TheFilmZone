@@ -48,9 +48,9 @@
                 CategoryName = category.Name
             };
         }
-       public async Task Delete (int id)
+        public async Task<(bool Success, string? ErrorMessage)> Delete(int id)
         {
-           await CategoryService.Delete(id);
+            return await CategoryService.Delete(id);
         }
     }
 }

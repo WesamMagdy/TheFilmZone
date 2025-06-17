@@ -3,19 +3,32 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FilmZone.Controllers
 {
+    [Authorize(Roles = "Admin")]
+
     public class MoviesController : Controller
     {
+
         private readonly IMovieProvider MovieProvider;
         public MoviesController(IMovieProvider movieProvider)
         {
             MovieProvider = movieProvider;
         }
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string SearchValue)
         {
-            var MovieIndexVm = await MovieProvider.GetMovieIndexVM();
+            List<MovieIndexVM> MovieIndexVm;
+            if (!string.IsNullOrEmpty(SearchValue))
+            {
+                MovieIndexVm = await MovieProvider.GetMovieByName(SearchValue);
+
+            }
+            else
+            {
+                MovieIndexVm = await MovieProvider.GetMovieIndexVM();
+            }
             return View(MovieIndexVm);
         }
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int id) 
         {
             var DetailsVM =await MovieProvider.ToDetailsVM(id);

@@ -1,13 +1,18 @@
 ﻿@model IEnumerable<FilmZone.ViewModels.MovieIndexVM>
 
 @{
-	ViewData["Title"] = "Index";
+	ViewData["Title"] = "Manage Movies";
 }
 
 <div>
-	<h1 class="display-5 fw-semibold text-primary-emphasis mt-3">🎬 Movie Collection</h1>
-	<p class="text-muted">Manage your movies, categories, and streaming options</p>
+	<h1 class="display-5 fw-semibold text-primary-emphasis mt-3">🎬 Manage Movies </h1>
+	<p class="text-muted">Manage your Movies, Categories, and Streaming options</p>
 </div>
+<form class="d-flex mb-3" asp-controller="Movies" asp-action="index">
+	<input class="form-control me-sm-2 " type="text" name="SearchValue" placeholder="Movie Name">
+	<button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
+</form>
+
 <table class="table  table-hover">
 
 	<tbody>

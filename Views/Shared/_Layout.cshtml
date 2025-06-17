@@ -3,54 +3,81 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>@ViewData["Title"] - FilmZone</title>
-	<link href="~/lib/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet" />
+    <title>@ViewData["Title"] - FilmZone</title>
+    <link href="~/lib/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Noto+Serif+Ottoman+Siyaq&family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
     <link href="~/css/bootstrap.min.css" rel="stylesheet" />
-	<link href="~/lib/select2/css/select2.min.css" rel="stylesheet" />
+    <link href="~/lib/select2/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/FilmZone.styles.css" asp-append-version="true" />
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+        <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
             <div class="container-fluid">
-                <a class="navbar-brand text-primary" asp-action="index" asp-controller="Home" asp-route-id="">Film Zone</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+                <!-- Logo -->
+                <a class="navbar-brand text-primary" asp-controller="Home" asp-action="Index">🎬 Film Zone</a>
+
+                <!-- Toggler for mobile view -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarColor02">
-                    <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-primary" asp-action="index" asp-controller="Movies">Movies</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-primary" asp-action="index" asp-controller="Category">Categories</a>
-                        </li>
 
-                      @*   <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Separated link</a>
-                            </div>
-                        </li> *@
+                <!-- Navbar content -->
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <!-- Left-aligned nav links -->
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link text-primary" asp-controller="Category" asp-action="Index">Categories</a>
+                        </li>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-primary" href="#" id="manageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    ⚙️ Manage
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="manageDropdown">
+                                    <li><a class="dropdown-item" asp-controller="Movies" asp-action="Index">🎬 Movies</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Category" asp-action="Manage">🏷️ Categories</a></li>
+                                    <li><a class="dropdown-item" asp-controller="User" asp-action="Index">👥 Accounts</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Role" asp-action="Index">🔐 Roles</a></li>
+                                </ul>
+                            </li>
+                        }
                     </ul>
-                    <form class="d-flex" asp-action="index" asp-controller="Home" >
-                        <input class="form-control me-sm-2 text-dark" type="search" name="SearchValue" placeholder="Movie's Name'">
-                        <button class=" btn btn-outline-primary my-2 my-sm-0" type="submit" value="Search">Search</button>
-                    </form>
+
+                    <!-- Right side: search form and logout (ms-auto pushes to right) -->
+                    <div class="d-flex align-items-center gap-3 ms-auto">
+                        <!-- Search form -->
+                        <form class="d-flex" asp-controller="Home" asp-action="index">
+                            <input class="form-control me-2" type="text" name="searchValue" placeholder="Movie Name" style="width: 250px;">
+                            <button class="btn btn-outline-dark" type="submit">Search</button>
+                        </form>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <form asp-controller="Account" asp-action="SignOut" method="post" class="d-inline">
+                                <button type="submit" class="btn btn-outline-danger btn-sm rounded-pill px-3">
+                                    Sign Out
+                                </button>
+                            </form>
+                        }
+                        else
+                        {
+                            <!-- Show when user is not signed in -->
+                            <a class="btn btn-outline-primary btn-sm rounded-pill px-3" asp-controller="Account" asp-action="SignIn">
+                                Sign In
+                            </a>
+
+                        }
+                    </div>
                 </div>
             </div>
         </nav>
+
     </header>
     <div class="container">
         <main role="main" class="pb-3">
@@ -59,12 +86,11 @@
     </div>
 
     <footer class="border-top footer text-muted">
-       
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-	<script src="~/lib/select2/js/select2.min.js"></script>
+    <script src="~/lib/select2/js/select2.min.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

@@ -2,10 +2,12 @@ using System.Diagnostics;
 using FilmZone.Models;
 using Microsoft.AspNetCore.Mvc;
 using FilmZone.Providers;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FilmZone.Controllers
 {
     public class HomeController : Controller
+        
     {
         private readonly ILogger<HomeController> _logger;
         private IMovieProvider MovieProvider;

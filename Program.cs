@@ -1,6 +1,9 @@
 using FilmZone.Infrastructure;
 using FilmZone.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 
 namespace FilmZone
 {
@@ -17,8 +20,23 @@ namespace FilmZone
             builder.Services.AddScoped<IMoviesService, MoviesService>();
             builder.Services.AddScoped<ICategoryService, CategoryService>();
             builder.Services.AddScoped<CategoryProvider>();
-         //   builder.Services.AddScoped<IMoviesService, MoviesService>();
+            builder.Services.AddScoped<AccountProvider>();
+            builder.Services.AddScoped<UserProvider>();
             builder.Services.AddControllersWithViews();
+            builder.Services.AddIdentity<ApplicationUser, IdentityRole>(Options =>
+            {
+                Options.Password.RequiredLength = 7;
+                Options.Password.RequireUppercase = true;
+                Options.Password.RequireLowercase = true;
+            }
+            )
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(Options =>
+            {
+                Options.LoginPath = "Account/Login";
+                Options.AccessDeniedPath = "Home/Error";
+            });
 
             var app = builder.Build();
 
@@ -33,14 +51,14 @@ namespace FilmZone
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Account}/{action=SignIn}/{id?}");
 
             app.Run();
         }
