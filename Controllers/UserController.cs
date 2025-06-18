@@ -6,17 +6,19 @@ using System.Buffers;
 
 namespace FilmZone.Controllers
 {
-    [Authorize(Roles ="Admin")]
+    [Authorize(Roles = "Admin")]
     public class UserController : Controller
     {
         private readonly UserManager<ApplicationUser> userManager;
         private readonly UserProvider userProvider;
         private readonly RoleManager<IdentityRole> roleManager;
-        public UserController(UserManager<ApplicationUser> userManager, UserProvider userProvider, RoleManager<IdentityRole> roleManager)
+        private readonly SignInManager<ApplicationUser> signInManager;
+        public UserController(UserManager<ApplicationUser> userManager, UserProvider userProvider, RoleManager<IdentityRole> roleManager, SignInManager<ApplicationUser> signInManager)
         {
             this.roleManager = roleManager;
             this.userManager = userManager;
             this.userProvider = userProvider;
+            this.signInManager = signInManager;
         }
 
         public async Task<IActionResult> Index(string SearchValue)
@@ -93,23 +95,64 @@ namespace FilmZone.Controllers
             return View(AssignRoleVm);
         }
         [HttpPost]
-        public async Task<IActionResult> AssignRole(string id,AssignRoleViewModel Vm)
+        public async Task<IActionResult> AssignRole(string id, AssignRoleViewModel Vm)
         {
             var user = await userManager.FindByIdAsync(id);
-      
-            if(await userManager.IsInRoleAsync(user,Vm.SelectedRole))
+
+            if (await userManager.IsInRoleAsync(user, Vm.SelectedRole))
             {
                 TempData["ErrorMessage"] = $"{Vm.SelectedRole} Is Already Assigned To {user.FristName}";
                 return RedirectToAction(nameof(Index));
             }
             else
             {
-               var Result= await userManager.AddToRoleAsync(user, Vm.SelectedRole);
-                if(Result.Succeeded)
+                var Result = await userManager.AddToRoleAsync(user, Vm.SelectedRole);
+                if (Result.Succeeded)
                     TempData["SuccessMessage"] = $"{Vm.SelectedRole} Assigned Successfully To {user.FristName}";
                 return RedirectToAction(nameof(Index));
 
             }
+        }
+        [HttpGet]
+        public async Task<IActionResult> RevokeRole(string id)
+        {
+            var user = await userManager.FindByIdAsync(id);
+            var userRoles = await userManager.GetRolesAsync(user);
+
+            var RevokeRoleVm = new AssignRoleViewModel
+            {
+                Id = id,
+                Name = user.FristName + user.LastName,
+                Email = user.Email,
+                AvailableRoles = userRoles.Select(role => new SelectListItem
+                {
+                    Value = role,
+                    Text = role
+                }).ToList()
+            };
+            ViewBag.ActionType = "Revoke"; // or "Assign"
+            return View(nameof(AssignRole), RevokeRoleVm);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> RevokeRole(string id, AssignRoleViewModel Vm)
+        {
+            var user = await userManager.FindByIdAsync(id);
+
+            if (!await userManager.IsInRoleAsync(user, Vm.SelectedRole))
+            {
+                TempData["ErrorMessage"] = $"{Vm.SelectedRole} Is Not Assigned To {user.FristName}";
+                return RedirectToAction(nameof(Index));
+            }
+
+            var result = await userManager.RemoveFromRoleAsync(user, Vm.SelectedRole);
+            if (result.Succeeded)
+            {
+                TempData["SuccessMessage"] = $"{Vm.SelectedRole} Revoked Successfully From {user.FristName}";
+            }
+            await userManager.UpdateSecurityStampAsync(user);
+
+            return RedirectToAction(nameof(Index));
         }
 
         [HttpPost]

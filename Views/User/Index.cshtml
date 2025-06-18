@@ -53,8 +53,11 @@
                         <a class="btn btn-outline-info rounded-3 me-2" asp-action="Edit" asp-route-id="@user.Id">
                             <i class="bi bi-pencil-fill"></i>
                         </a>
-                        <a class="btn btn-outline-success rounded-3 me-2" asp-action="AssignRole" asp-route-id="@user.Id">
+                        <a class="btn btn-outline-success rounded-3 me-2" asp-action="AssignRole" asp-route-id="@user.Id" title="Assign Role">
                             <i class="bi bi-person-plus-fill"></i>
+                        </a>
+                        <a class="btn btn-outline-warning rounded-3 me-2" asp-action="RevokeRole" asp-route-id="@user.Id" title="Revoke Role">
+                            <i class="bi bi-person-dash-fill"></i>
                         </a>
                         <form asp-action="Delete" asp-route-id="@user.Id" method="post"
                               onsubmit="return confirm('Are you sure you want to delete this account?');"

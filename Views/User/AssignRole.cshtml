@@ -1,12 +1,13 @@
 ﻿@model FilmZone.ViewModels.Identitiy.AssignRoleViewModel
 
 @{
-    ViewData["Title"] = "Assign Role";
+    ViewData["Title"] = $"Manage {Model.Name} Roles";
 }
 
-<h2 class="fw-semibold text-secondary-emphasis mt-3 mb-3">🔐 Assign Role to User</h2>
-
-<form asp-action="AssignRole" method="post">
+<h2>
+    @(ViewBag.ActionType == "Revoke" ? $"🔓 Revoke {Model.Name} Role" : $"🔐 Assign{Model.Name} Role")
+</h2>
+<form asp-action="@(ViewBag.ActionType == "Revoke" ? "RevokeRole" : "AssignRole")" method="post">
     <div class="mb-3">
         <label class="form-label">User Id</label>
         <input class="form-control" asp-for="Id" disabled />
@@ -25,8 +26,16 @@
             <option disabled selected value="">-- Select Role --</option>
         </select>
     </div>
-
-    <button type="submit" class="btn btn-outline-warning"">
-        <i class="bi bi-plus-circle"></i> Assign Role
-    </button>
+    @if (ViewBag.ActionType == "Revoke")
+    {
+        <button type="submit" class="btn btn-outline-danger">
+            <i class="bi bi-dash-circle"></i> Revoke Role
+        </button>
+    }
+    else
+    {
+        <button type="submit" class="btn btn-outline-warning">
+            <i class="bi bi-plus-circle"></i> Assign Role
+        </button>
+    }
 </form>

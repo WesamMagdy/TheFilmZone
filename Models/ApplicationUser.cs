@@ -13,5 +13,6 @@ namespace FilmZone.Models
         [Required]
 
         public bool RememberMe { get; set; }
+
     }
 }
