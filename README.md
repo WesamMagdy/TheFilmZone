@@ -10,8 +10,6 @@ A comprehensive movie management system built with ASP.NET Core MVC, featuring r
 - [Features](#features)
 - [Architecture](#architecture)
 - [Technologies Used](#technologies-used)
-- [Prerequisites](#prerequisites)
-- [Configuration](#configuration)
 - [Usage](#usage)
 - [Project Structure](#project-structure)
 
@@ -91,65 +89,15 @@ Film Zone follows a clean, layered architecture pattern:
 - **Validation**: Data Annotations + Custom Validators
 - **File Storage**: Server-side file management
 - **Frontend**: Razor Views with client-side validation
-
-## 📋 Prerequisites
-
-- .NET 6.0 or later
-- SQL Server (LocalDB or Full Instance)
-- Visual Studio 2022 or VS Code
-- Git
-
-## ⚙️ Configuration
-
-### Database Configuration
-Update the connection string in `appsettings.json`:
-```json
-{
-  "ConnectionStrings": {
-    "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=FilmZoneDb;Trusted_Connection=true;MultipleActiveResultSets=true"
-  }
-}
-```
-
-### File Upload Settings
-Configure file upload validation in `appsettings.json`:
-```json
-{
-  "FileUpload": {
-    "MaxFileSize": 5242880,
-    "AllowedExtensions": [".jpg", ".jpeg", ".png", ".gif"],
-    "UploadPath": "wwwroot/uploads/covers"
-  }
-}
-```
-
-### Validation Settings
-Configure business rules and validation:
-```json
-{
-  "Validation": {
-    "MovieNameMaxLength": 100,
-    "CategoryNameMaxLength": 50,
-    "RoleNameMaxLength": 50,
-    "EnforceUniqueNames": {
-      "Movies": true,
-      "Categories": true,
-      "Roles": true
-    },
-    "PreventNonEmptyCategoryDeletion": true
-  }
-}
-```
-
+- 
 ### Default Admin Account
 The system creates a default admin account on first run:
-- **Username**: admin@filmzone.com
-- **Password**: Admin123!
-- **Role**: Administrator
+- **Username**: admin@Gmail.com
+- **Password**: P@ssw0rd
+- **Role**: Admin
 
-## 💡 Usage
-
-### For Administrators
+## 💡 Roles
+###  Administrators
 1. **Login** with admin credentials
 2. **Movie Management**: 
    - Create new movies with cover image upload
@@ -168,7 +116,7 @@ The system creates a default admin account on first run:
    - Create, edit, and delete custom roles
    - Manage role-based permissions
 
-### For Regular Users
+### Regular Users
 1. **Account Management**: Register for a new account or login
 2. **Browse Movies**: View available movies and their details (no login required)
 3. **Search Functionality**: Find movies by name using the search feature
