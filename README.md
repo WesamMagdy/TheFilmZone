@@ -6,12 +6,13 @@ A comprehensive movie management system built with ASP.NET Core MVC, featuring r
 
 ## 📋 Table of Contents
 
-- [Overview](#overview)
-- [Features](#features)
-- [Architecture](#architecture)
-- [Technologies Used](#technologies-used)
-- [Usage](#usage)
-- [Project Structure](#project-structure)
+- [🎯 Overview](#-overview)
+- [✨ Features](#-features)
+- [🏗️ Architecture](#-architecture)
+- [🛠️ Technologies Used](#-technologies-used)
+- [💡 Usage](#-usage)
+- [📁 Project Structure](#-project-structure)
+
 
 ## 🎯 Overview
 
@@ -96,7 +97,7 @@ The system creates a default admin account on first run:
 - **Password**: P@ssw0rd
 - **Role**: Admin
 
-## 💡 Roles
+## 💡 Usage
 ###  Administrators
 1. **Login** with admin credentials
 2. **Movie Management**: 
