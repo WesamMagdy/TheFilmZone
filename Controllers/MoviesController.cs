@@ -1,5 +1,6 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.Data;
+using System.Threading.Tasks;
 
 namespace FilmZone.Controllers
 {
@@ -16,7 +17,7 @@ namespace FilmZone.Controllers
         [HttpGet]
         public async Task<IActionResult> Index(string SearchValue)
         {
-            List<MovieIndexVM> MovieIndexVm;
+            List<MovieIndexVM> MovieIndexVm;    
             if (!string.IsNullOrEmpty(SearchValue))
             {
                 MovieIndexVm = await MovieProvider.GetMovieByName(SearchValue);
@@ -59,7 +60,11 @@ namespace FilmZone.Controllers
                 ViewModel = await MovieProvider.GetCreateMovieVM();
                 return View(ViewModel);
             }
+            else
+            {
+                TempData["SuccessMessage"] = $"{ViewModel.Title} Was Added Successfully.";
 
+            }
             return RedirectToAction(nameof(Index));
         }
         [HttpGet]
@@ -88,7 +93,13 @@ namespace FilmZone.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var IsDeleted =await MovieProvider.DeleteMovie(id);
+            if (IsDeleted)
+            {
+                TempData["SuccessMessage"] = "Movie deleted Successfully.";
+
+            }
             return RedirectToAction(nameof(Index));
+
         }
     }
 }

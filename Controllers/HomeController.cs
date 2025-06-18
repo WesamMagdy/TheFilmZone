@@ -18,7 +18,7 @@ namespace FilmZone.Controllers
             this.MovieProvider = movieProvider;
         }
 
-        public async Task<IActionResult> Index(string searchValue, int id)
+        public async Task<IActionResult> Index(string searchValue, int id = 0)
         {
             List<MovieIndexVM> MovieIndexVm;
             if (!string.IsNullOrEmpty(searchValue))
