@@ -23,7 +23,7 @@
 				<span asp-validation-for="CategoryId" class="text-danger"></span>
 			</div>
 			<div>
-				<label asp-for="SelectedStreamingServiceId" class="form-label mt-4"></label>
+				<label asp-for="SelectedStreamingServiceId" class="form-label mt-4">Available On</label>
 				<select multiple class="form-select" asp-for="SelectedStreamingServiceId" asp-items="Model.StreamingServices" id="streamingServices">
 					<option></option>
 				</select>
@@ -49,7 +49,10 @@
 				<span asp-validation-for="Cover" class="text-danger" id="Cover"></span>
 
 			</div>
-			<button type="submit" class="btn btn-light text-primary mt-4">Save</button>
+			<button type="submit" class="btn  btn-outline-success rounded rounded-3 me-2">
+				<i class="bi bi-pencil-fill"></i>
+				Save Edit
+			</button>
 		</div>
 		<div class="col-md-6 d-flex justify-content-center align-items-center" style="min-height: 70vh;">
 			<div id="preview-wrapper" style="background-color: black; padding: 10px; border-radius: 6px; display: none;">

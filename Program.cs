@@ -16,7 +16,7 @@ namespace FilmZone
             builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString)); //connecting the database
             // Add services to the container.
             builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-            builder.Services.AddScoped<IMovieProvider, MovieProvider>();
+            builder.Services.AddScoped<MovieProvider>();
             builder.Services.AddScoped<IMoviesService, MoviesService>();
             builder.Services.AddScoped<ICategoryService, CategoryService>();
             builder.Services.AddScoped<CategoryProvider>();

@@ -4,7 +4,7 @@ using NuGet.LibraryModel;
 
 namespace FilmZone.Providers
 {
-    public class MovieProvider : IMovieProvider
+    public class MovieProvider
     {
         private IMoviesService MoviesService;
         private readonly IWebHostEnvironment _webHostEnvironment;
@@ -63,7 +63,7 @@ namespace FilmZone.Providers
                     Title = movie.Title,
                     Cover = movie.Cover,
                     Category = category.Name,
-                    CategoryId=category.Id,
+                    CategoryId = category.Id,
                     StreamingLogos = Streams.Select(s => s.Logo).ToList(),
                 });
             }
@@ -72,9 +72,9 @@ namespace FilmZone.Providers
         }
         public async Task<List<MovieIndexVM>> GetMoviesByName(string searchValue)
         {
-           var movies= await MoviesService.GetMoviesByName(searchValue);
+            var movies = await MoviesService.GetMoviesByName(searchValue);
             List<MovieIndexVM> searchMoviesVM = new List<MovieIndexVM>();
-            foreach(var movie in movies)
+            foreach (var movie in movies)
             {
                 var streams = await MoviesService.GetMovieStreams(movie.Id);
                 var category = await MoviesService.GetCategoryById(movie.CategoryId);
@@ -89,8 +89,8 @@ namespace FilmZone.Providers
             }
             return searchMoviesVM;
         }
-            
-       
+
+
         public async Task<List<MovieIndexVM>> GetMovieByName(string searchValue)
         {
             var movies = await MoviesService.GetMoviesByName(searchValue);//get all the movies from database using repo
@@ -140,9 +140,10 @@ namespace FilmZone.Providers
             var Streams = await MoviesService.GetMovieStreams(movie.Id);
             return new MovieDetailsViewModel
             {
+                Id = movie.Id,
                 Title = movie.Title,
                 Category = category.Name,
-                CategoryId= category.Id,
+                CategoryId = category.Id,
                 Description = movie.Description,
                 Cover = movie.Cover,
                 StreamingLogos = Streams.Select(s => s.Logo).ToList()
@@ -206,18 +207,23 @@ namespace FilmZone.Providers
                 movie.Cover = coverFileName;
                 return await MoviesService.EditMovie(movie, ViewModel.Cover.Length);
             }
-             await MoviesService.EditMovie(movie);
+            await MoviesService.EditMovie(movie);
             return null;
         }
-            public async Task<bool> DeleteMovie(int id)
-            {
-           
-                var movie = await MoviesService.GetMovieById(id);
-                if (movie is null) return false;
-                var oldCoverPath = Path.Combine(_webHostEnvironment.WebRootPath, "assets", "images", "Movies", movie.Cover);
-                File.Delete(oldCoverPath);
-                return await MoviesService.DeleteMovie(id);
-            }
+        public async Task<bool> DeleteMovie(int id)
+        {
+
+            var movie = await MoviesService.GetMovieById(id);
+            if (movie is null) return false;
+            var oldCoverPath = Path.Combine(_webHostEnvironment.WebRootPath, "assets", "images", "Movies", movie.Cover);
+            File.Delete(oldCoverPath);
+            return await MoviesService.DeleteMovie(id);
         }
+        public async Task<string> GetMovieName(int id)
+        {
+            var movie = await MoviesService.GetMovieById(id);
+            return movie.Title;
+        }
+    }
 
 }

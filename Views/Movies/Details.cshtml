@@ -9,8 +9,8 @@
             <div class="col-md-8">
                 <div>
                     <h1 class=" text-primary fw-bolder mt-3">@Model.Title</h1>
-                    <a asp-action="index" asp-controller="Home" asp-route-id="@Model.CategoryId" 
-                    class="badge rounded-pill bg-dark-subtle fs-6 text-info-emphasis text-decoration-none neon-hover" >@Model.Category</a>
+                    <a asp-action="index" asp-controller="Home" asp-route-id="@Model.CategoryId"
+                       class="badge rounded-pill bg-dark-subtle fs-6 text-info-emphasis text-decoration-none neon-hover">@Model.Category</a>
                     <p class="fs-5 text-light-emphasis mt-3 ">@Model.Description</p>
                     <p class="text-muted mt-2">Available On:</p>
 
@@ -25,7 +25,6 @@
                     </div>
                 </div>
                 <div>
-
                 </div>
             </div>
             <div class="col-md-4">
@@ -35,6 +34,15 @@
         </div>
     </div>
 </div>
+@if (User.IsInRole("Admin"))
+{
+    <div>
+        <a class="btn btn-outline-info rounded rounded-3 me-2" asp-action="Edit" asp-route-id="@Model.Id">
+            <i class="bi bi-pencil-fill">Edit Movie</i>
+        </a>
+    </div>
+}
+
 <style>
     .stream-logo {
         width: 45px;
@@ -50,12 +58,12 @@
 
         .neon-hover:hover {
             box-shadow: 0 0 10px 3px #0d6efd, 0 0 18px 4px #0d6efd;
-            color: #0d6efd ;
+            color: #0d6efd;
         }
 
 
-        .stream-logo:hover {
-            transform: scale(1);
-            box-shadow: 0 0 12px rgba(200, 255, 255, 0.9);
-        }
+    .stream-logo:hover {
+        transform: scale(1);
+        box-shadow: 0 0 12px rgba(200, 255, 255, 0.9);
+    }
 </style>

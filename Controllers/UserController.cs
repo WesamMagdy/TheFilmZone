@@ -150,7 +150,8 @@ namespace FilmZone.Controllers
             {
                 TempData["SuccessMessage"] = $"{Vm.SelectedRole} Revoked Successfully From {user.FristName}";
             }
-            await userManager.UpdateSecurityStampAsync(user);
+            await userManager.UpdateSecurityStampAsync(user);            
+            await signInManager.RefreshSignInAsync(user);
 
             return RedirectToAction(nameof(Index));
         }

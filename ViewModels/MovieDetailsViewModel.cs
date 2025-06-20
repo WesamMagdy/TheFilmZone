@@ -5,6 +5,7 @@ namespace FilmZone.ViewModels
 {
     public class MovieDetailsViewModel
     {
+        public int? Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; } = String.Empty;
         public string Category { get; set; }

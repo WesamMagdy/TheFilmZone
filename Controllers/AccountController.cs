@@ -85,7 +85,7 @@ namespace FilmZone.Controllers
         public new async Task<IActionResult> SignOut()
         {
             await SignInManager.SignOutAsync();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction(nameof(SignIn));
         }
 
     }

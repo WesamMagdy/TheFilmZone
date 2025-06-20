@@ -10,9 +10,9 @@ namespace FilmZone.Controllers
         
     {
         private readonly ILogger<HomeController> _logger;
-        private IMovieProvider MovieProvider;
+        private MovieProvider MovieProvider;
 
-        public HomeController(ILogger<HomeController> logger, IMovieProvider movieProvider)
+        public HomeController(ILogger<HomeController> logger, MovieProvider movieProvider)
         {
             _logger = logger;
             this.MovieProvider = movieProvider;

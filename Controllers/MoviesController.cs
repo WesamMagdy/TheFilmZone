@@ -9,8 +9,8 @@ namespace FilmZone.Controllers
     public class MoviesController : Controller
     {
 
-        private readonly IMovieProvider MovieProvider;
-        public MoviesController(IMovieProvider movieProvider)
+        private readonly MovieProvider MovieProvider;
+        public MoviesController(MovieProvider movieProvider)
         {
             MovieProvider = movieProvider;
         }
@@ -82,6 +82,9 @@ namespace FilmZone.Controllers
             {
                 foreach (var error in errors) { ModelState.AddModelError(error.Key, error.Value); }
             }
+            else
+                TempData["SuccessMessage"] = $"{MovieViewModel.Title} Edited Successfully.";
+
             if (!ModelState.IsValid)
             {
                 MovieViewModel = await MovieProvider.ToEditVM(MovieViewModel.Id);
@@ -93,9 +96,10 @@ namespace FilmZone.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var IsDeleted =await MovieProvider.DeleteMovie(id);
+            var movieName = await MovieProvider.GetMovieName(id);
             if (IsDeleted)
             {
-                TempData["SuccessMessage"] = "Movie deleted Successfully.";
+                TempData["SuccessMessage"] = $"{movieName} deleted Successfully.";
 
             }
             return RedirectToAction(nameof(Index));

@@ -22,7 +22,7 @@
 				<span asp-validation-for="CategoryId" class="text-danger"></span>
 			</div>
 			<div>
-				<label asp-for="SelectedStreamingServiceId" class="form-label mt-4"></label>
+				<label asp-for="SelectedStreamingServiceId" class="form-label mt-4">Available On</label>
 				<select multiple class="form-select" asp-for="SelectedStreamingServiceId" asp-items="Model.StreamingServices" id="streamingServices">
 				</select>
 				<span asp-validation-for="SelectedStreamingServiceId" class="text-danger"></span>
