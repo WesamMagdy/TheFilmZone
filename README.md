@@ -54,7 +54,24 @@ Film Zone is a modern web application designed for managing movies and categorie
   - Granular access control for CRUD operations
   - Anonymous access for movie details viewing
   - Admin-only access for management functions
-- **Anti-Forgery Protection**: CSRF protection on all state-changing operations
+- **Anti-Forgery Protection**: CSRF protection on all state-changing 
+
+### 🚀 Performance & Scalability
+Film Zone is built with performance in mind, utilizing asynchronous programming patterns throughout the entire application stack:
+Full Async Implementation: Every database operation, from simple queries to complex CRUD operations, uses async/await patterns
+Non-Blocking Operations: All controller actions return Task<IActionResult>, ensuring the web server can handle more concurrent requests
+Scalable Architecture: Async patterns extend through all layers:
+Controllers use async Task<IActionResult>
+Providers implement async Task<T> methods
+Services utilize async Task for all business operations
+Repository layer implements async database calls with Entity Framework
+Efficient Resource Usage: Non-blocking I/O operations prevent thread pool exhaustion
+Improved Responsiveness: File upload, image processing, and database operations don't block the UI thread
+This comprehensive async implementation ensures the application can handle high traffic loads while maintaining responsive user experience.
+Efficient Resource Usage: Non-blocking I/O operations prevent thread pool exhaustion
+Improved Responsiveness: File upload, image processing, and database operations don't block the UI thread
+
+This comprehensive async implementation ensures the application can handle high traffic loads while maintaining responsive user experience.
 
 ## 🏗️ Architecture
 
