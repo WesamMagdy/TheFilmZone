@@ -9,12 +9,14 @@ namespace FilmZone.Infrastructure
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
+
         }
         public DbSet<Movie> Movies;
         public DbSet<Category> Categories ;
         public DbSet<StreamingService> StreamingServices ;
         public DbSet<MovieStreamingService> MovieStreamingServices;
-    
+        public DbSet<UserMovie> UserMovies;
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -26,6 +28,24 @@ namespace FilmZone.Infrastructure
            .WithMany(m => m.streamingServices)
            .HasForeignKey(mss => mss.MovieId)
            .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<UserMovie>()
+                .HasKey(UM => UM.Id); //primary key for UserMovie
+            modelBuilder.Entity<UserMovie>()
+                .HasIndex(UM => new { UM.UserId, UM.MovieId })
+                .IsUnique();//unique index to prevent duplicate entries for the same user and movie
+            modelBuilder.Entity<UserMovie>() //the many to many relationship between User and Movie
+                .HasOne(u=>u.User)
+                .WithMany() 
+                .HasForeignKey(UM => UM.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<UserMovie>()
+                    .HasOne(m=>m.Movie)
+                    .WithMany()
+                    .HasForeignKey(UM => UM.MovieId)
+                    .OnDelete(DeleteBehavior.Cascade);
+
+
 
             modelBuilder.Entity<Category>()
                 .HasMany(c => c.Movies)

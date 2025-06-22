@@ -12,5 +12,9 @@ namespace FilmZone.ViewModels
         public int? CategoryId { get; set; } 
         public List<string> StreamingLogos { get; set; } = new List<string>();
         public string Cover { get; set; } = default!;
+        public int? MyRating { get; set; }
+        public double? AvgRating { get; set; }
+        public string? Review { get; set; }
+        public bool InWatchList { get; set; }
     }
 }

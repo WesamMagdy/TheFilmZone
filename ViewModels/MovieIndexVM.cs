@@ -8,6 +8,7 @@
         public string Category { get; set; }
         public int? CategoryId { get; set; }
         public List<string> StreamingLogos { get; set; } = new List<string>();
-
+        public Double? rating { get; set; }
+        public bool InWatchList { get; set; }
     }
 }

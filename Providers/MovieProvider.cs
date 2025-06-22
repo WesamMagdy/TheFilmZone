@@ -7,10 +7,12 @@ namespace FilmZone.Providers
     public class MovieProvider
     {
         private IMoviesService MoviesService;
+        private readonly IUserMoviesService UserMovieService;
         private readonly IWebHostEnvironment _webHostEnvironment;
-        public MovieProvider(IMoviesService moviesService, IWebHostEnvironment webHostEnvironment)
+        public MovieProvider(IMoviesService moviesService,IUserMoviesService userMoviesService, IWebHostEnvironment webHostEnvironment)
         {
             MoviesService = moviesService;
+            UserMovieService = userMoviesService;
             _webHostEnvironment = webHostEnvironment;
         }
         public async Task<CreateMovieViewModel> GetCreateMovieVM()
@@ -57,6 +59,7 @@ namespace FilmZone.Providers
             {
                 var Streams = await MoviesService.GetMovieStreams(movie.Id);
                 var category = await MoviesService.GetCategoryById(movie.CategoryId);
+                var rating = await UserMovieService.GetMovieAverageRating(movie.Id);
                 moviesIndexVM.Add(new MovieIndexVM
                 {
                     Id = movie.Id,
@@ -65,6 +68,8 @@ namespace FilmZone.Providers
                     Category = category.Name,
                     CategoryId = category.Id,
                     StreamingLogos = Streams.Select(s => s.Logo).ToList(),
+                    Rating = rating
+
                 });
             }
             return moviesIndexVM;
@@ -78,6 +83,8 @@ namespace FilmZone.Providers
             {
                 var streams = await MoviesService.GetMovieStreams(movie.Id);
                 var category = await MoviesService.GetCategoryById(movie.CategoryId);
+                var rating = await UserMovieService.GetMovieAverageRating(movie.Id);
+
                 searchMoviesVM.Add(new MovieIndexVM
                 {
                     Id = movie.Id,
@@ -85,6 +92,7 @@ namespace FilmZone.Providers
                     Cover = movie.Cover,
                     Category = category.Name,
                     StreamingLogos = streams.Select(s => s.Logo).ToList(),
+                    Rating=rating,
                 });
             }
             return searchMoviesVM;

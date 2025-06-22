@@ -19,6 +19,7 @@ namespace FilmZone
             builder.Services.AddScoped<MovieProvider>();
             builder.Services.AddScoped<IMoviesService, MoviesService>();
             builder.Services.AddScoped<ICategoryService, CategoryService>();
+            builder.Services.AddScoped<IUserMoviesService, UserMovieService>();
             builder.Services.AddScoped<CategoryProvider>();
             builder.Services.AddScoped<AccountProvider>();
             builder.Services.AddScoped<UserProvider>();

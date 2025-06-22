@@ -25,6 +25,10 @@
         {
             return await dbset.FindAsync(id);
         }
+        public async Task<T> GetByCompositeIdAsync(int id1,int id2)
+        {
+            return await dbset.FindAsync(id1,id2);
+        }
         public void Add(T entity)
         {
             dbset.Add(entity);
