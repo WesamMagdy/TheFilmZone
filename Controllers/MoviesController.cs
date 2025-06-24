@@ -10,6 +10,7 @@ namespace FilmZone.Controllers
     {
 
         private readonly MovieProvider MovieProvider;
+       
         public MoviesController(MovieProvider movieProvider)
         {
             MovieProvider = movieProvider;
@@ -34,6 +35,16 @@ namespace FilmZone.Controllers
         {
             var DetailsVM =await MovieProvider.ToDetailsVM(id);
             return View(DetailsVM);
+        }
+        [AllowAnonymous]
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> AddRating(int MovieId,string UserId,int Rating)
+        {
+           await MovieProvider.AddRating(MovieId, UserId, Rating);
+            TempData["SuccessMessage"] = "Rating Added Successfully.";
+           return RedirectToAction(nameof(Details), new { id = MovieId });
+
         }
         [HttpGet]
         public async Task<IActionResult> Create()

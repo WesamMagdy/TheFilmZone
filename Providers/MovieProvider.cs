@@ -1,5 +1,6 @@
 ﻿using System.Xml.Schema;
 using FilmZone.Models;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using NuGet.LibraryModel;
 
 namespace FilmZone.Providers
@@ -107,6 +108,7 @@ namespace FilmZone.Providers
             {
                 var Streams = await MoviesService.GetMovieStreams(movie.Id);
                 var category = await MoviesService.GetCategoryById(movie.CategoryId);
+                var rating = await UserMovieService.GetMovieAverageRating(movie.Id);
                 moviesIndexVM.Add(new MovieIndexVM
                 {
                     Id = movie.Id,
@@ -115,6 +117,7 @@ namespace FilmZone.Providers
                     Category = category.Name,
                     CategoryId = category.Id,
                     StreamingLogos = Streams.Select(s => s.Logo).ToList(),
+                    Rating=rating
                 });
             }
             return moviesIndexVM;
@@ -128,6 +131,8 @@ namespace FilmZone.Providers
             {
                 var Streams = await MoviesService.GetMovieStreams(movie.Id);
                 var category = await MoviesService.GetCategoryById(movie.CategoryId);
+                var rating = await UserMovieService.GetMovieAverageRating(movie.Id);
+
                 moviesIndexVM.Add(new MovieIndexVM
                 {
                     Id = movie.Id,
@@ -136,6 +141,7 @@ namespace FilmZone.Providers
                     Category = category.Name,
                     CategoryId = category.Id,
                     StreamingLogos = Streams.Select(s => s.Logo).ToList(),
+                    Rating=rating
                 });
             }
             return moviesIndexVM;
@@ -146,6 +152,7 @@ namespace FilmZone.Providers
             var movie = await MoviesService.GetMovieById(id);
             var category = await MoviesService.GetCategoryById(movie.CategoryId);
             var Streams = await MoviesService.GetMovieStreams(movie.Id);
+            var rating = await UserMovieService.GetMovieAverageRating(movie.Id);
             return new MovieDetailsViewModel
             {
                 Id = movie.Id,
@@ -154,9 +161,8 @@ namespace FilmZone.Providers
                 CategoryId = category.Id,
                 Description = movie.Description,
                 Cover = movie.Cover,
-                StreamingLogos = Streams.Select(s => s.Logo).ToList()
-
-
+                StreamingLogos = Streams.Select(s => s.Logo).ToList(),
+                Rating=rating
             };
 
         }
@@ -231,6 +237,10 @@ namespace FilmZone.Providers
         {
             var movie = await MoviesService.GetMovieById(id);
             return movie.Title;
+        }
+        public async Task AddRating(int MovieId,string UserId, int Rating)
+        {
+            UserMovieService.AssignRating(MovieId, UserId, Rating);
         }
     }
 

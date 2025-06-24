@@ -18,11 +18,47 @@
 				   asp-controller="Movies"
 				   asp-route-id="@movie.Id"
 				   class="text-decoration-none text-white">
-					<div class="card-body m-2 rounded-2"
+
+					<div class="card-body m-2 rounded-2 position-relative"
 						 style="background-image: url('@Url.Content($"~/assets/images/Movies/{movie.Cover}")'); background-size: cover; background-position: center; height: 500px;">
+
+						<!-- ⭐ Star Rating Overlay -->
+						<div class="position-absolute bottom-0 end-0 mb-2 ms-2 me-2 text-warning bg-dark bg-opacity-75 px-2 py-1 rounded">
+							@if (movie.Rating.HasValue)
+							{
+								var rating = movie.Rating.Value;
+								for (int i = 1; i <= 5; i++)
+								{
+									if (i <= (int)rating)
+									{
+										<i class="bi bi-star-fill"></i>
+									}
+									else if (i == (int)rating + 1 && rating % 1 >= 0.5)
+									{
+										<i class="bi bi-star-half"></i>
+									}
+									else
+									{
+										<i class="bi bi-star"></i>
+									}
+								}
+							}
+							else
+							{
+								@* No rating yet — show empty stars *@
+								for (int i = 1; i <= 5; i++)
+								{
+									<i class="bi bi-star"></i>
+								}
+							}
+							<span>@movie.Rating</span>
+
+						</div>
 					</div>
+
 					<div class="card-footer py-0 px-2">
 						<h5>@movie.Title</h5>
+
 						<div style="display: flex; flex-wrap: wrap; gap: 8px; padding-top: 2px;">
 							@foreach (var StreamLogo in movie.StreamingLogos)
 							{
@@ -36,12 +72,10 @@
 
 				<a asp-action="Index"
 				   asp-route-id="@movie.CategoryId"
-				   class="badge rounded-pill bg-light fs-6 ms-3 mt-n3 position-absolute category-badge	"
+				   class="badge rounded-pill bg-light fs-6 ms-3 mt-n3 position-absolute category-badge"
 				   style="bottom: 105px;z-index: 10; text-decoration: none;">
 					@movie.Category
 				</a>
-
-				
 			</div>
 		</div>
 

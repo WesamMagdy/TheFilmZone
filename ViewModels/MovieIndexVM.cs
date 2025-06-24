@@ -1,4 +1,6 @@
-﻿namespace FilmZone.ViewModels
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace FilmZone.ViewModels
 {
     public class MovieIndexVM
     {
@@ -8,7 +10,8 @@
         public string Category { get; set; }
         public int? CategoryId { get; set; }
         public List<string> StreamingLogos { get; set; } = new List<string>();
-        public Double? rating { get; set; }
+        [Range(1, 5, ErrorMessage = "Rating must be between 1 and 5")]
+        public Double? Rating { get; set; }
         public bool InWatchList { get; set; }
     }
 }
