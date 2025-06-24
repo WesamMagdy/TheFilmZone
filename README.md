@@ -109,8 +109,8 @@ Film Zone follows a clean, layered architecture pattern:
 - 
 ### Default Admin Account
 The system creates a default admin account on first run:
-- **Username**: admin@Gmail.com
-- **Password**: P@ssw0rd
+- **Username**: admin@filmzone.com
+- **Password**: Admin123!
 - **Role**: Admin
 
 ## 💡 Usage
