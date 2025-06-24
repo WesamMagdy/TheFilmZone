@@ -35,19 +35,23 @@
                             <!-- Static Stars for Guests -->
                             <div class="text-warning fs-3">
                                 @for (int i = 1; i <= 5; i++)
-                                {
-                                    if (i <= (int)@Model.Rating)
+                                {   
+                                    if (Model.Rating is not null)
                                     {
-                                        <i class="bi bi-star-fill"></i>
-                                    }
-                                    else if (i == (int)@Model.Rating + 1 && @Model.Rating % 1 >= 0.5)
-                                    {
-                                        <i class="bi bi-star-half"></i>
+                                        if (i <= (int)@Model.Rating)
+                                        {
+                                            <i class="bi bi-star-fill"></i>
+                                        }
+                                        else if (i == (int)@Model.Rating + 1 && @Model.Rating % 1 >= 0.5)
+                                        {
+                                            <i class="bi bi-star-half"></i>
+                                        }
                                     }
                                     else
-                                    {
-                                        <i class="bi bi-star"></i>
-                                    }
+                                        {
+                                            <i class="bi bi-star"></i>
+                                        }
+                                    
                                 }
                             </div>
                         }

@@ -11,11 +11,12 @@ namespace FilmZone.Infrastructure
         {
 
         }
-        public DbSet<Movie> Movies;
-        public DbSet<Category> Categories ;
-        public DbSet<StreamingService> StreamingServices ;
-        public DbSet<MovieStreamingService> MovieStreamingServices;
-        public DbSet<UserMovie> UserMovies;
+        public DbSet<Movie> Movies { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<StreamingService> StreamingServices { get; set; }
+        public DbSet<MovieStreamingService> MovieStreamingServices { get; set; }
+        public DbSet<UserMovie> UserMovies { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

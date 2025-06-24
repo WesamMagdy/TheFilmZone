@@ -55,16 +55,11 @@ namespace FilmZone.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Logo = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    MovieId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_StreamingService", x => x.id);
-                    table.ForeignKey(
-                        name: "FK_StreamingService_Movie_MovieId",
-                        column: x => x.MovieId,
-                        principalTable: "Movie",
-                        principalColumn: "Id");
+                   
                 });
 
             migrationBuilder.CreateTable(
@@ -110,17 +105,17 @@ namespace FilmZone.Migrations
 
             migrationBuilder.InsertData(
                 table: "StreamingService",
-                columns: new[] { "id", "Logo", "MovieId", "Name" },
+                columns: new[] { "id", "Logo", "Name" },
                 values: new object[,]
                 {
-                    { 1, "NetflixLogo", null, "Netflix" },
-                    { 2, "AmazonPrimeLogo", null, "Amazon Prime" },
-                    { 3, "DisneyPlusLogo", null, "Disney+" },
-                    { 4, "HuluLogo", null, "Hulu" },
-                    { 5, "HBOMaxLogo", null, "HBO Max" },
-                    { 6, "AppleTVPlusLogo", null, "Apple TV+" },
-                    { 7, "WatchItLogo", null, "WatchIt" },
-                    { 8, "ShahidLogo", null, "Shahid" }
+                    { 1, "NetflixLogo", "Netflix" },
+                    { 2, "AmazonPrimeLogo", "Amazon Prime" },
+                    { 3, "DisneyPlusLogo", "Disney+" },
+                    { 4, "HuluLogo", "Hulu" },
+                    { 5, "HBOMaxLogo", "HBO Max" },
+                    { 6, "AppleTVPlusLogo", "Apple TV+" },
+                    { 7, "WatchItLogo", "WatchIt" },
+                    { 8, "ShahidLogo", "Shahid" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -133,10 +128,7 @@ namespace FilmZone.Migrations
                 table: "MovieStreamingService",
                 column: "StreamingServiceId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_StreamingService_MovieId",
-                table: "StreamingService",
-                column: "MovieId");
+           
         }
 
         /// <inheritdoc />

@@ -1,15 +1,17 @@
 using FilmZone.Infrastructure;
+using FilmZone.Infrastructure.Seeding;
 using FilmZone.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using static System.Formats.Asn1.AsnWriter;
 
 namespace FilmZone
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
@@ -56,7 +58,24 @@ namespace FilmZone
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
+            using var scope = app.Services.CreateScope();
+            var Services = scope.ServiceProvider;
+            var context = Services.GetRequiredService<ApplicationDbContext>();
+            var Logger = Services.GetRequiredService<ILogger<Program>>();
+            try
+            {
+                await context.Database.MigrateAsync();
+                await DataSeeding.SeedAdminUserAsync(Services);
+                await DataSeeding.SeedMovies(context);
+                await DataSeeding.SeedMoviesStreams(context);
 
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex, "Error occured while migrating process");
+            }
+          
+             
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Account}/{action=SignIn}/{id?}");
