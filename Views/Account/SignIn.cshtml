@@ -21,7 +21,7 @@
 
     <div class="form-group">
         <label asp-for="Password" class="form-label">Password</label>
-        <input asp-for="Password" class="form-input" placeholder="Create a strong password" type="password" />
+        <input asp-for="Password" class="form-input" placeholder="Enter your password" type="password" />
         <span asp-validation-for="Password" class="validation-message text-danger"></span>
         
     </div>
@@ -37,7 +37,7 @@
 <div class="fs-4 login-link">
    Frist Time Visiting? Join Us Now!
    <br />
-   <a asp-action="SignUp">Sign Up</a>
+   <a asp-action="SignUp" class="text-body-emphasis">Sign Up</a>
 </div>
 
 @section ValidationScriptsPartial {

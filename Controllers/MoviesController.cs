@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Data;
 using System.Threading.Tasks;
-
+using System.Security.Claims;
 namespace FilmZone.Controllers
 {
     [Authorize(Roles = "Admin")]
@@ -33,7 +33,8 @@ namespace FilmZone.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Details(int id) 
         {
-            var DetailsVM =await MovieProvider.ToDetailsVM(id);
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var DetailsVM =await MovieProvider.ToDetailsVM(userId,id);
             return View(DetailsVM);
         }
         [AllowAnonymous]

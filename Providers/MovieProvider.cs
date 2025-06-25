@@ -2,6 +2,8 @@
 using FilmZone.Models;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using NuGet.LibraryModel;
+using System.Security.Claims;
+
 
 namespace FilmZone.Providers
 {
@@ -147,12 +149,13 @@ namespace FilmZone.Providers
             return moviesIndexVM;
 
         }
-        public async Task<MovieDetailsViewModel> ToDetailsVM(int id)
+        public async Task<MovieDetailsViewModel> ToDetailsVM(string userId,int MovieId)
         {
-            var movie = await MoviesService.GetMovieById(id);
+            var movie = await MoviesService.GetMovieById(MovieId);
             var category = await MoviesService.GetCategoryById(movie.CategoryId);
-            var Streams = await MoviesService.GetMovieStreams(movie.Id);
-            var rating = await UserMovieService.GetMovieAverageRating(movie.Id);
+            var Streams = await MoviesService.GetMovieStreams(MovieId);
+            var rating = await UserMovieService.GetMovieAverageRating(MovieId);
+            var myRating = await UserMovieService.GetMyRating(userId, MovieId);
             return new MovieDetailsViewModel
             {
                 Id = movie.Id,
@@ -162,7 +165,8 @@ namespace FilmZone.Providers
                 Description = movie.Description,
                 Cover = movie.Cover,
                 StreamingLogos = Streams.Select(s => s.Logo).ToList(),
-                Rating=rating
+                Rating=rating,
+               MyRating = myRating
             };
 
         }

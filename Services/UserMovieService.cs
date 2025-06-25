@@ -32,7 +32,11 @@ namespace FilmZone.Services
             }
             return ratings.DefaultIfEmpty(0).Average();
         }
-        // This method calculates the average rating for a movie based on user ratings.
+        public async Task<int?> GetMyRating(string userId, int movieId)
+        {
+            return await userMovieRepository.GetAll().Where(um => um.UserId == userId && um.MovieId == movieId)
+                .Select(um => um.Rating.Value).SingleOrDefaultAsync();
+        }
         public async Task AssignRating(int movieid ,string userId, int rating)
         {
             var userMovie = userMovieRepository.GetAll()
