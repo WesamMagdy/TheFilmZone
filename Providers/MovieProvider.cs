@@ -12,7 +12,7 @@ namespace FilmZone.Providers
         private IMoviesService MoviesService;
         private readonly IUserMoviesService UserMovieService;
         private readonly IWebHostEnvironment _webHostEnvironment;
-        public MovieProvider(IMoviesService moviesService,IUserMoviesService userMoviesService, IWebHostEnvironment webHostEnvironment)
+        public MovieProvider(IMoviesService moviesService, IUserMoviesService userMoviesService, IWebHostEnvironment webHostEnvironment)
         {
             MoviesService = moviesService;
             UserMovieService = userMoviesService;
@@ -54,7 +54,7 @@ namespace FilmZone.Providers
             };
             return await MoviesService.AddMovie(Movie, ViewModel.Cover.Length);
         }
-        public async Task<List<MovieIndexVM>> GetMovieIndexVM()
+        public async Task<List<MovieIndexVM>> GetMovieIndexVM(string? userId)
         {
             var movies = await MoviesService.GetAllAsync();//get all the movies from database using repo
             List<MovieIndexVM> moviesIndexVM = new List<MovieIndexVM>();
@@ -63,6 +63,7 @@ namespace FilmZone.Providers
                 var Streams = await MoviesService.GetMovieStreams(movie.Id);
                 var category = await MoviesService.GetCategoryById(movie.CategoryId);
                 var rating = await UserMovieService.GetMovieAverageRating(movie.Id);
+                var isInWatchlist = await UserMovieService.IsInWatchList(userId, movie.Id);
                 moviesIndexVM.Add(new MovieIndexVM
                 {
                     Id = movie.Id,
@@ -71,46 +72,25 @@ namespace FilmZone.Providers
                     Category = category.Name,
                     CategoryId = category.Id,
                     StreamingLogos = Streams.Select(s => s.Logo).ToList(),
-                    Rating = rating
+                    Rating = rating,
+                    InWatchList = isInWatchlist
 
                 });
             }
             return moviesIndexVM;
 
         }
-        public async Task<List<MovieIndexVM>> GetMoviesByName(string searchValue)
+
+        public async Task<List<MovieIndexVM>> GetMovieByName(string? userId, string searchValue)
         {
             var movies = await MoviesService.GetMoviesByName(searchValue);
-            List<MovieIndexVM> searchMoviesVM = new List<MovieIndexVM>();
-            foreach (var movie in movies)
-            {
-                var streams = await MoviesService.GetMovieStreams(movie.Id);
-                var category = await MoviesService.GetCategoryById(movie.CategoryId);
-                var rating = await UserMovieService.GetMovieAverageRating(movie.Id);
-
-                searchMoviesVM.Add(new MovieIndexVM
-                {
-                    Id = movie.Id,
-                    Title = movie.Title,
-                    Cover = movie.Cover,
-                    Category = category.Name,
-                    StreamingLogos = streams.Select(s => s.Logo).ToList(),
-                    Rating=rating,
-                });
-            }
-            return searchMoviesVM;
-        }
-
-
-        public async Task<List<MovieIndexVM>> GetMovieByName(string searchValue)
-        {
-            var movies = await MoviesService.GetMoviesByName(searchValue);//get all the movies from database using repo
             List<MovieIndexVM> moviesIndexVM = new List<MovieIndexVM>();
             foreach (var movie in movies)
             {
                 var Streams = await MoviesService.GetMovieStreams(movie.Id);
                 var category = await MoviesService.GetCategoryById(movie.CategoryId);
                 var rating = await UserMovieService.GetMovieAverageRating(movie.Id);
+                var isInWatchlist = await UserMovieService.IsInWatchList(userId, movie.Id);
                 moviesIndexVM.Add(new MovieIndexVM
                 {
                     Id = movie.Id,
@@ -119,13 +99,15 @@ namespace FilmZone.Providers
                     Category = category.Name,
                     CategoryId = category.Id,
                     StreamingLogos = Streams.Select(s => s.Logo).ToList(),
-                    Rating=rating
+                    Rating = rating,
+                    InWatchList = isInWatchlist
+
                 });
             }
             return moviesIndexVM;
 
         }
-        public async Task<List<MovieIndexVM>> GetMoviesByCategory(int CategoryId)
+        public async Task<List<MovieIndexVM>> GetMoviesByCategory(string? userId, int CategoryId)
         {
             var movies = await MoviesService.GetMoviesByCategory(CategoryId);//get movies with given category
             List<MovieIndexVM> moviesIndexVM = new List<MovieIndexVM>();
@@ -134,7 +116,7 @@ namespace FilmZone.Providers
                 var Streams = await MoviesService.GetMovieStreams(movie.Id);
                 var category = await MoviesService.GetCategoryById(movie.CategoryId);
                 var rating = await UserMovieService.GetMovieAverageRating(movie.Id);
-
+                var isInWatchlist = await UserMovieService.IsInWatchList(userId, movie.Id);
                 moviesIndexVM.Add(new MovieIndexVM
                 {
                     Id = movie.Id,
@@ -143,19 +125,47 @@ namespace FilmZone.Providers
                     Category = category.Name,
                     CategoryId = category.Id,
                     StreamingLogos = Streams.Select(s => s.Logo).ToList(),
-                    Rating=rating
+                    Rating = rating,
+                    InWatchList = isInWatchlist
                 });
             }
             return moviesIndexVM;
 
         }
-        public async Task<MovieDetailsViewModel> ToDetailsVM(string userId,int MovieId)
+        public async Task<List<MovieIndexVM>> GetMoviesInWatchList(string? userId)
+        {
+            var moviesId = UserMovieService.GetMoviesIdInWatchList(userId).ToList();
+            var movies = MoviesService.GetAll().Where(m => moviesId.Contains(m.Id)).ToList();
+            List<MovieIndexVM> moviesIndexVM = new List<MovieIndexVM>();
+            foreach (var movie in movies)
+            {
+                var Streams = await MoviesService.GetMovieStreams(movie.Id);
+                var category = await MoviesService.GetCategoryById(movie.CategoryId);
+                var rating = await UserMovieService.GetMovieAverageRating(movie.Id);
+                var isInWatchlist = await UserMovieService.IsInWatchList(userId, movie.Id);
+                moviesIndexVM.Add(new MovieIndexVM
+                {
+                    Id = movie.Id,
+                    Title = movie.Title,
+                    Cover = movie.Cover,
+                    Category = category.Name,
+                    CategoryId = category.Id,
+                    StreamingLogos = Streams.Select(s => s.Logo).ToList(),
+                    Rating = rating,
+                    InWatchList = isInWatchlist
+                });
+            }
+            return moviesIndexVM;
+
+        }
+        public async Task<MovieDetailsViewModel> ToDetailsVM(string? userId, int MovieId)
         {
             var movie = await MoviesService.GetMovieById(MovieId);
             var category = await MoviesService.GetCategoryById(movie.CategoryId);
             var Streams = await MoviesService.GetMovieStreams(MovieId);
             var rating = await UserMovieService.GetMovieAverageRating(MovieId);
             var myRating = await UserMovieService.GetMyRating(userId, MovieId);
+            var isInWatchlist = await UserMovieService.IsInWatchList(userId, movie.Id);
             return new MovieDetailsViewModel
             {
                 Id = movie.Id,
@@ -165,8 +175,9 @@ namespace FilmZone.Providers
                 Description = movie.Description,
                 Cover = movie.Cover,
                 StreamingLogos = Streams.Select(s => s.Logo).ToList(),
-                Rating=rating,
-               MyRating = myRating
+                Rating = rating,
+                MyRating = myRating,
+                InWatchList = isInWatchlist
             };
 
         }
@@ -242,9 +253,18 @@ namespace FilmZone.Providers
             var movie = await MoviesService.GetMovieById(id);
             return movie.Title;
         }
-        public async Task AddRating(int MovieId,string UserId, int Rating)
+        public async Task AddRating(int MovieId, string UserId, int Rating)
         {
-            UserMovieService.AssignRating(MovieId, UserId, Rating);
+            await UserMovieService.AssignRating(MovieId, UserId, Rating);
+        }
+        public async Task ToggleWatchList(string userId, int movieId)
+        {
+            if (await UserMovieService.IsInWatchList(userId, movieId))
+            {
+                await UserMovieService.RemoveFromWatchList(userId, movieId);
+            }
+            else
+                await UserMovieService.AddToWatchList(userId, movieId);
         }
     }
 

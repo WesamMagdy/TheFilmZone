@@ -1,9 +1,10 @@
 ﻿@model IEnumerable<FilmZone.ViewModels.MovieIndexVM>
 
 @{
-	if(Model.Any()){
-	if (Model.All(m => m.CategoryId == Model.First().CategoryId)) 
-	{ ViewData["Title"] = Model.First().Category; }
+	if (Model.Any())
+	{
+		if (Model.All(m => m.CategoryId == Model.First().CategoryId))
+		{ ViewData["Title"] = Model.First().Category; }
 	}
 }
 
@@ -21,6 +22,17 @@
 
 					<div class="card-body m-2 rounded-2 position-relative"
 						 style="background-image: url('@Url.Content($"~/assets/images/Movies/{movie.Cover}")'); background-size: cover; background-position: center; height: 500px;">
+
+						<!-- 🔖 Watchlist Indicator -->
+						@if (movie.InWatchList) // Assuming you have this property in your ViewModel
+						{
+							<div class="watchlist-indicator position-absolute top-0 start-0 mt-2 ms-2">
+								<div class="watchlist-badge">
+									<i class="bi bi-bookmark-heart-fill watchlist-icon"></i>
+									<div class="watchlist-pulse"></div>
+								</div>
+							</div>
+						}
 
 						<!-- ⭐ Star Rating Overlay -->
 						<div class="position-absolute bottom-0 end-0 mb-2 ms-2 me-2 text-warning bg-dark bg-opacity-75 px-2 py-1 rounded">
@@ -51,8 +63,11 @@
 									<i class="bi bi-star"></i>
 								}
 							}
-							<span>@movie.Rating.</span>
-
+							@if (movie.Rating.HasValue)
+							{
+								var rounded = Math.Floor(movie.Rating.Value * 10) / 10;
+								<span>@rounded.ToString("0.0")</span>
+							}
 						</div>
 					</div>
 
@@ -78,14 +93,81 @@
 				</a>
 			</div>
 		</div>
-
 	}
 </div>
-</p>
+
 <style>
+	/* Watchlist Indicator Styles */
+	.watchlist-indicator {
+		z-index: 15;
+		pointer-events: none;
+	}
+
+	.watchlist-badge {
+		position: relative;
+		background: linear-gradient(135deg, #ff6b6b 0%, #ff5722 100%);
+		border: 2px solid #fff;
+		border-radius: 50%;
+		width: 40px;
+		height: 40px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4), 0 0 20px rgba(255, 107, 107, 0.3);
+		animation: watchlistGlow 2s ease-in-out infinite alternate;
+	}
+
+	.watchlist-icon {
+		font-size: 1.2rem;
+		color: #fff;
+		filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.8));
+	}
+
+	.watchlist-pulse {
+		position: absolute;
+		top: -2px;
+		left: -2px;
+		right: -2px;
+		bottom: -2px;
+		border: 2px solid #ff6b6b;
+		border-radius: 50%;
+		animation: watchlistPulse 2s ease-in-out infinite;
+		opacity: 0;
+	}
+
+	@@keyframes watchlistGlow {
+		0% {
+			box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4), 0 0 20px rgba(255, 107, 107, 0.3);
+		}
+
+		100% {
+			box-shadow: 0 4px 20px rgba(255, 107, 107, 0.6), 0 0 30px rgba(255, 107, 107, 0.5);
+		}
+	}
+
+	@@keyframes watchlistPulse {
+		0% {
+			transform: scale(1);
+			opacity: 0.7;
+		}
+
+		100% {
+			transform: scale(1.3);
+			opacity: 0;
+		}
+	}
+
+	/* Enhanced card hover effect for watchlisted movies */
+	.card:has(.watchlist-indicator):hover {
+		transform: scale(1.05) !important;
+		box-shadow: 0 0 20px rgba(255, 107, 107, 0.4), 0 0 40px rgba(0, 180, 255, 0.3), 0 8px 30px rgba(0, 0, 0, 0.3) !important;
+		border-color: rgba(255, 107, 107, 0.5) !important;
+	}
+
+	/* Original styles */
 	.category-badge {
 		transition: box-shadow 0.4s ease, background-color 0.3s ease;
-		background-color: #0d6efd; /* Bootstrap primary blue */
+		background-color: #0d6efd;
 		color: white;
 		cursor: pointer;
 		text-decoration: none;
@@ -93,23 +175,21 @@
 
 		.category-badge:hover {
 			box-shadow: 0 0 12px 4px #0d6efd;
-			background-color: #0b5ed7; /* Slightly darker on hover */
+			background-color: #0b5ed7;
 		}
 
 	.stream-logo {
 		width: 32px;
 		height: 32px;
 		border-radius: 6px;
-		/*box-shadow: 0 0 6px rgba(200, 200, 200, 0.6); /* Neon glow */
 		transition: transform 0.2s ease, box-shadow 0.2s ease;
 	}
 
 		.stream-logo:hover {
-			transform: scale(1);
-			box-shadow: 0 0 12px rgba(0, 255, 255, 0.9);
+			transform: scale(1.1);
+			box-shadow: 0 0 12px rgba(0, 0, 0, 0.9);
 		}
-</style>
-<style>
+
 	.card {
 		transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 		box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
@@ -138,18 +218,4 @@
 			box-shadow: 0 0 16px rgba(0, 255, 255, 0.5), 0 0 32px rgba(0, 255, 255, 0.3);
 			border-color: rgba(0, 255, 255, 0.4);
 		}
-
-	/* Logo effect */
-	.stream-logo {
-		width: 32px;
-		height: 32px;
-		border-radius: 6px;
-		transition: transform 0.2s ease, box-shadow 0.2s ease;
-	}
-
-		.stream-logo:hover {
-			transform: scale(1.1);
-			box-shadow: 0 0 12px rgba(0, 0, 0, 0.9);
-		}
 </style>
-

@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FilmZone.Models;
+using Microsoft.AspNetCore.Mvc;
 using System.Data;
-using System.Threading.Tasks;
 using System.Security.Claims;
+using System.Threading.Tasks;
 namespace FilmZone.Controllers
 {
     [Authorize(Roles = "Admin")]
@@ -14,24 +15,27 @@ namespace FilmZone.Controllers
         public MoviesController(MovieProvider movieProvider)
         {
             MovieProvider = movieProvider;
+
         }
         [HttpGet]
         public async Task<IActionResult> Index(string SearchValue)
         {
-            List<MovieIndexVM> MovieIndexVm;    
+            List<MovieIndexVM> MovieIndexVm;
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
             if (!string.IsNullOrEmpty(SearchValue))
             {
-                MovieIndexVm = await MovieProvider.GetMovieByName(SearchValue);
+                MovieIndexVm = await MovieProvider.GetMovieByName(userId,SearchValue);
 
             }
             else
             {
-                MovieIndexVm = await MovieProvider.GetMovieIndexVM();
+                MovieIndexVm = await MovieProvider.GetMovieIndexVM(userId);
             }
             return View(MovieIndexVm);
         }
         [AllowAnonymous]
-        public async Task<IActionResult> Details(int id) 
+        public async Task<IActionResult> Details(int id)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var DetailsVM =await MovieProvider.ToDetailsVM(userId,id);
@@ -116,6 +120,14 @@ namespace FilmZone.Controllers
             }
             return RedirectToAction(nameof(Index));
 
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ToggleWatchlist(int movieId)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            await MovieProvider.ToggleWatchList(userId, movieId);
+            return Json(new { success = true });
         }
     }
 }

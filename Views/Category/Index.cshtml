@@ -1,40 +1,311 @@
 ﻿@model IEnumerable<FilmZone.ViewModels.CategoryViewModel>
-
 @{
     ViewData["Title"] = "Categories";
 }
 
-<div class="row mt-5">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<div class="categories-hero">
+    <h1 class="categories-title">Movie Categories</h1>
+    <p class="categories-subtitle">Discover your next favorite film</p>
+</div>
+
+<div class="categories-grid mt-4">
     @foreach (var category in Model)
     {
-        <div class="col-md-6">
+        <div class="category-card-wrapper">
             <a asp-action="index"
                asp-controller="Home"
                asp-route-id="@category.CategoryId"
-               class="btn btn-outline-dark w-100 mt-3 fs-5 neon-hover">
-                @category.CategoryName
-                <br />
-                <span class="font-monospace small">Movies: @category.MoviesCount</span>
+               class="category-card">
+                <div class="category-card-inner">
+                    <div class="category-icon">
+                        @{
+                            string iconClass = "fas fa-film"; // default
+                            string categoryLower = category.CategoryName.ToLower();
+                            if (categoryLower.Contains("action")) { iconClass = "fas fa-fist-raised"; }
+                            else if (categoryLower.Contains("comedy")) { iconClass = "fas fa-laugh"; }
+                            else if (categoryLower.Contains("drama")) { iconClass = "fas fa-theater-masks"; }
+                            else if (categoryLower.Contains("horror")) { iconClass = "fas fa-ghost"; }
+                            else if (categoryLower.Contains("thriller")) { iconClass = "fas fa-user-secret"; }
+                            else if (categoryLower.Contains("romance")) { iconClass = "fas fa-heart"; }
+                            else if (categoryLower.Contains("sci")) { iconClass = "fas fa-rocket"; }
+                            else if (categoryLower.Contains("science")) { iconClass = "fas fa-rocket"; }
+                            else if (categoryLower.Contains("fantasy")) { iconClass = "fas fa-magic"; }
+                            else if (categoryLower.Contains("adventure")) { iconClass = "fas fa-map-marked-alt"; }
+                            else if (categoryLower.Contains("crime")) { iconClass = "fas fa-mask"; }
+                            else if (categoryLower.Contains("mystery")) { iconClass = "fas fa-search"; }
+                            else if (categoryLower.Contains("animation")) { iconClass = "fas fa-palette"; }
+                            else if (categoryLower.Contains("documentary")) { iconClass = "fas fa-video"; }
+                            else if (categoryLower.Contains("family")) { iconClass = "fas fa-home"; }
+                            else if (categoryLower.Contains("war")) { iconClass = "fas fa-fighter-jet"; }
+                            else if (categoryLower.Contains("western")) { iconClass = "fas fa-hat-cowboy"; }
+                            else if (categoryLower.Contains("music")) { iconClass = "fas fa-music"; }
+                            else if (categoryLower.Contains("sport")) { iconClass = "fas fa-futbol"; }
+                            else if (categoryLower.Contains("history")) { iconClass = "fas fa-scroll"; }
+                        }
+                        <i class="@iconClass"></i>
+                    </div>
+                    <h3 class="category-name">@category.CategoryName</h3>
+                    <div class="category-stats">
+                        <span class="movies-count">@category.MoviesCount</span>
+                        <span class="movies-label">Movies</span>
+                    </div>
+                    <div class="category-overlay"></div>
+                </div>
             </a>
         </div>
     }
 </div>
+
 @if (User.IsInRole("Admin"))
 {
-    <div>
-        <a asp-action="Manage" type="button" class="btn btn-outline-info mt-4">Manage Categories</a>
-
+    <div class="admin-section">
+        <a asp-action="Manage" class="admin-btn">
+            <i class="fas fa-cog"></i>
+            Manage Categories
+        </a>
     </div>
 }
 
 <style>
-    .neon-hover {
-        transition: box-shadow 0.3s, color 0.3s, border-color 0.3s;
+    .categories-hero {
+        text-align: center;
+        padding: 2rem 0;
+        background: linear-gradient(135deg, rgba(51, 153, 255, 0.1) 0%, rgba(0, 51, 204, 0.05) 100%);
+        border-radius: 15px;
+        margin-bottom: 2rem;
+        border: 1px solid rgba(51, 153, 255, 0.2);
     }
 
-        .neon-hover:hover {
-            color: #3399ff; /* light blue for better visibility on hover */
-            border-color: #0033cc; /* dark blue border */
-            box-shadow: 0 0 8px #0033cc, 0 0 16px #3399ff, 0 0 24px #0033cc;
+    .categories-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #2c3e50;
+        margin-bottom: 0.5rem;
+        text-shadow: 0 0 20px rgba(51, 153, 255, 0.3);
+    }
+
+    .categories-subtitle {
+        font-size: 1.1rem;
+        color: #5a6c7d;
+        margin: 0;
+        opacity: 0.9;
+    }
+
+    .categories-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+        padding: 1rem 0;
+    }
+
+    .category-card-wrapper {
+        position: relative;
+    }
+
+    .category-card {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+        height: 100%;
+    }
+
+    .category-card-inner {
+        background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+        border: 2px solid #333;
+        border-radius: 15px;
+        padding: 2rem 1.5rem;
+        height: 180px;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .category-card:hover .category-card-inner {
+        transform: translateY(-8px);
+        border-color: #3399ff;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 30px rgba(51, 153, 255, 0.3), inset 0 0 30px rgba(51, 153, 255, 0.1);
+        background: linear-gradient(135deg, #2a2a2a 0%, #3d3d3d 100%);
+    }
+
+    .category-icon {
+        font-size: 2.5rem;
+        color: #3399ff;
+        margin-bottom: 1rem;
+        transition: all 0.3s ease;
+        filter: drop-shadow(0 0 10px rgba(51, 153, 255, 0.5));
+    }
+
+    .category-card:hover .category-icon {
+        transform: scale(1.2) rotate(5deg);
+        color: #66b3ff;
+        filter: drop-shadow(0 0 20px rgba(51, 153, 255, 0.8));
+    }
+
+    .category-name {
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: #fff;
+        margin: 0 0 1rem 0;
+        transition: all 0.3s ease;
+        position: relative;
+        z-index: 2;
+    }
+
+    .category-card:hover .category-name {
+        color: #3399ff;
+        text-shadow: 0 0 10px rgba(51, 153, 255, 0.5);
+    }
+
+    .category-stats {
+        display: flex;
+        align-items: baseline;
+        gap: 0.5rem;
+        position: relative;
+        z-index: 2;
+    }
+
+    .movies-count {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #3399ff;
+        font-family: 'Courier New', monospace;
+        transition: all 0.3s ease;
+    }
+
+    .category-card:hover .movies-count {
+        color: #66b3ff;
+        text-shadow: 0 0 10px rgba(51, 153, 255, 0.7);
+        transform: scale(1.1);
+    }
+
+    .movies-label {
+        font-size: 0.9rem;
+        color: #b0b3b8;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 500;
+    }
+
+    .category-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(45deg, rgba(51, 153, 255, 0) 0%, rgba(51, 153, 255, 0.1) 100%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+    }
+
+    .category-card:hover .category-overlay {
+        opacity: 1;
+    }
+
+    .admin-section {
+        margin-top: 3rem;
+        text-align: center;
+        padding: 2rem 0;
+    }
+
+    .admin-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: linear-gradient(135deg, #0033cc 0%, #3399ff 100%);
+        color: #fff;
+        text-decoration: none;
+        padding: 1rem 2rem;
+        border-radius: 50px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+        box-shadow: 0 4px 15px rgba(51, 153, 255, 0.3);
+    }
+
+        .admin-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(51, 153, 255, 0.4), 0 0 30px rgba(51, 153, 255, 0.3);
+            color: #fff;
+            background: linear-gradient(135deg, #0044dd 0%, #44aaff 100%);
         }
+
+        .admin-btn i {
+            font-size: 1.1rem;
+        }
+
+    /* Responsive adjustments */
+    @@media (max-width: 768px) {
+        .categories-grid {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .categories-title {
+            font-size: 2rem;
+        }
+
+        .category-card-inner {
+            height: 160px;
+            padding: 1.5rem 1rem;
+        }
+
+        .category-icon {
+            font-size: 2rem;
+        }
+
+        .category-name {
+            font-size: 1.2rem;
+        }
+    }
+
+    /* Animation for loading */
+    .category-card-wrapper {
+        animation: fadeInUp 0.6s ease forwards;
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+        .category-card-wrapper:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .category-card-wrapper:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .category-card-wrapper:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .category-card-wrapper:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .category-card-wrapper:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        .category-card-wrapper:nth-child(6) {
+            animation-delay: 0.6s;
+        }
+
+    @@keyframes fadeInUp {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Subtle background pattern */
+    body {
+        background-image: radial-gradient(circle at 25% 25%, rgba(51, 153, 255, 0.1) 0%, transparent 50%), radial-gradient(circle at 75% 75%, rgba(0, 51, 204, 0.1) 0%, transparent 50%);
+    }
 </style>

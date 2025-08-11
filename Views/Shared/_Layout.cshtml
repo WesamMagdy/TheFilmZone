@@ -33,6 +33,9 @@
                     <li>
                         <a asp-controller="Category" asp-action="Index">Categories</a>
                     </li>
+                    <li>
+                        <a asp-controller="Home" asp-action="Index" asp-route-watchList="true">WatchList</a>
+                    </li>
                     @if (User.IsInRole("Admin"))
                     {
                         <li class="dropdown">

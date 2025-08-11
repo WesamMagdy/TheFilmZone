@@ -13,47 +13,46 @@
                     <!-- Title and Rating Section -->
                     <div class="d-flex align-items-start mt-2 mb-3">
                         <div class="flex-grow-1">
-                            <h1 class="text-primary fw-bolder mb-2">@Model.Title</h1>
-                            
+                          <h1 class="text-primary fw-bolder mb-2">@Model.Title 
+                            <button onclick="toggleWatchlist(@Model.Id)" 
+                                    id="watchlist-btn-@Model.Id"
+                                    class="btn btn-sm @(Model.InWatchList ? "btn-danger" : "btn-outline-success")">
+                                <i class="bi @(Model.InWatchList ? "bi-bookmark-fill" : "bi-bookmark")" 
+                                   id="watchlist-icon-@Model.Id" 
+                                   title="Add To Watchlist"></i>
+                            </button>
+                        </h1> 
                             @if (User.Identity.IsAuthenticated)
                             {
                                 <!-- Current Rating Display -->
                                 <div class="mb-3">
-                                    <small class="text-muted d-block mb-1">Current Rating</small>
                                     <div class="text-warning fs-4">
-                                       @{
-    double rating = Model.Rating ?? 0;
-    int fullStars = (int)Math.Floor(rating);
-    bool hasHalfStar = (rating - fullStars) >= 0.25 && (rating - fullStars) < 0.75;
-    int emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
-}
-<div class="text-warning fs-4">
-    @for (int i = 0; i < fullStars; i++)
-    {
-        <i class="bi bi-star-fill"></i>
-    }
-
-    @if (hasHalfStar)
-    {
-        <i class="bi bi-star-half"></i> <!-- Use bi-star-half (not bi-star-half-fill) -->
-    }
-
-    @for (int i = 0; i < emptyStars; i++)
-    {
-        <i class="bi bi-star"></i>
-    }
-
-    <span class="ms-2 fs-6 text-light">(@rating.ToString("F1")/5)</span>
-</div>
-
-                                        @if (Model.Rating is not null)
+                                                                           @{
+                                        double rating = Model.Rating ?? 0;
+                                        int fullStars = (int)Math.Floor(rating);
+                                        bool hasHalfStar = (rating - fullStars) >= 0.25 && (rating - fullStars) < 0.75;
+                                        int emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+                                    }
+                                    <div class="text-warning fs-4">
+                                        @for (int i = 0; i < fullStars; i++)
                                         {
-                                            <span class="ms-2 fs-6 text-light">(@string.Format("{0:F1}", Model.Rating)/5)</span>
+                                            <i class="bi bi-star-fill"></i>
                                         }
-                                        else
+
+                                        @if (hasHalfStar)
                                         {
-                                            <span class="ms-2 fs-6 text-muted">(No ratings yet)</span>
+                                            <i class="bi bi-star-half"></i> <!-- Use bi-star-half (not bi-star-half-fill) -->
                                         }
+
+                                        @for (int i = 0; i < emptyStars; i++)
+                                        {
+                                            <i class="bi bi-star"></i>
+                                        }
+
+                                        <span class="ms-2 fs-6 text-light">(@rating.ToString("F1")/5)</span>
+                                    </div>
+
+                                        
                                     </div>
                                 </div>
                                 
@@ -62,7 +61,7 @@
                                     <small class="text-muted d-block mb-1">
                                         @if (Model.MyRating.HasValue)
                                         {
-                                            <span>Your rating: @string.Format("{0:F1}", Model.MyRating.Value)/5 - Click to change</span>
+                                            <span>Your rating:@Model.MyRating.Value/5</span>
                                         }
                                         else
                                         {
@@ -89,33 +88,28 @@
                                 <div class="mb-3">
                                     <small class="text-muted d-block mb-1">Rating</small>
                                     <div class="text-warning fs-4">
-@{
-    double rating = Model.Rating ?? 0;
-    int fullStars = (int)Math.Floor(rating);
-    bool hasHalfStar = (rating - fullStars) >= 0.25 && (rating - fullStars) < 0.75;
-    int emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
-}
-<div class="text-warning fs-4">
-    @for (int i = 0; i < fullStars; i++)
-    {
-        <i class="bi bi-star-fill"></i>
-    }
+                                        @{
+                                            double rating = Model.Rating ?? 0;
+                                            int fullStars = (int)Math.Floor(rating);
+                                            bool hasHalfStar = (rating - fullStars) >= 0.25 && (rating - fullStars) < 0.75;
+                                            int emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+                                        }
+                                        <div class="text-warning fs-4">
+                                            @for (int i = 0; i < fullStars; i++)
+                                            {
+                                                <i class="bi bi-star-fill"></i>
+                                            }
 
-    @if (hasHalfStar)
-    {
-        <i class="bi bi-star-half"></i> <!-- Use bi-star-half (not bi-star-half-fill) -->
-    }
+                                            @if (hasHalfStar)
+                                            {
+                                                <i class="bi bi-star-half"></i> <!-- Use bi-star-half (not bi-star-half-fill) -->
+                                            }
 
-    @for (int i = 0; i < emptyStars; i++)
-    {
-        <i class="bi bi-star"></i>
-    }
-
-    <span class="ms-2 fs-6 text-light">(@rating.ToString("F1")/5)</span>
-</div>
-
-
-                                        @if (Model.Rating is not null)
+                                            @for (int i = 0; i < emptyStars; i++)
+                                            {
+                                                <i class="bi bi-star"></i>
+                                            }
+                                              @if (Model.Rating is not null)
                                         {
                                             <span class="ms-2 fs-6 text-light">(@string.Format("{0:F1}", Model.Rating)/5)</span>
                                         }
@@ -123,6 +117,7 @@
                                         {
                                             <span class="ms-2 fs-6 text-muted">(No ratings yet)</span>
                                         }
+                                        </div>                              
                                     </div>
                                     <div class="mt-2">
                                         <a asp-action="SignIn" asp-controller="Account" class="btn btn-outline-primary btn-sm">
@@ -248,6 +243,36 @@
             });
         }
     });
+    function toggleWatchlist(movieId) {
+    fetch('/Movies/ToggleWatchlist', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
+        },
+        body: 'movieId=' + movieId
+    })
+    .then(response => {
+        if (response.ok) {
+            // Toggle the button appearance without page reload
+            const btn = document.getElementById('watchlist-btn-' + movieId);
+            const icon = document.getElementById('watchlist-icon-' + movieId);
+            
+            if (btn.classList.contains('btn-danger')) {
+                btn.classList.remove('btn-danger');
+                btn.classList.add('btn-outline-success');
+                icon.classList.remove('bi-bookmark-fill');
+                icon.classList.add('bi-bookmark');
+            } else {
+                btn.classList.remove('btn-outline-success');
+                btn.classList.add('btn-danger');
+                icon.classList.remove('bi-bookmark');
+                icon.classList.add('bi-bookmark-fill');
+            }
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}
 </script>
 
 <style>
